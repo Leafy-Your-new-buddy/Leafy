@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item android:id="@+id/calendar"
+        android:icon="@drawable/ic_calendar"
+        android:title="달력"
+        />
+    <item android:id="@+id/home"
+        android:icon="@drawable/ic_leaf_home"
+        android:title="메인"
+        />
+
+    <item android:id="@+id/camera"
+        android:icon="@drawable/ic_camera"
+        android:title="진단"
+        />
+</menu>
