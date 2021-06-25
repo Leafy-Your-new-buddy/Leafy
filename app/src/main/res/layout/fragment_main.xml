@@ -3,7 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".MainFragment"
+    android:id="@+id/home_frag"
+
+    >
+
+
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
@@ -11,5 +17,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="main_fragment" />
+
+    <TextView
+
+        android:id="@+id/tvReceiveData_main"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="20dp"
+
+        android:layout_width="match_parent"
+        android:layout_height="18dp"
+
+        android:text="수분량"
+        app:layout_constraintStart_toStartOf="@+id/maintoolbar"
+        app:layout_constraintTop_toBottomOf="@+id/maintoolbar" />
+
 
 </FrameLayout>
