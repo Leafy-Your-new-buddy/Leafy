@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -35,6 +36,20 @@ public class MainActivity extends AppCompatActivity {
         navigationView.setOnNavigationItemSelectedListener(listener);
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout,new MainFragment()).commit();
         navigationView.getMenu().getItem(1).setChecked(true);
+
+        ImageView iv = (ImageView) findViewById(R.id.setting);
+        iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), settingActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
+
+
+
 
     }
 

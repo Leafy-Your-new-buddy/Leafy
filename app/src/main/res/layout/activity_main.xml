@@ -34,4 +34,13 @@
         app:itemIconTint="@drawable/menu_selector_color"
         app:itemTextColor="@drawable/menu_selector_color"/>
 
+
+
+
+
+
+
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

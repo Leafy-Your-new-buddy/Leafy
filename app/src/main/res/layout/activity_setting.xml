@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".settingActivity">
+    <include layout="@layout/subtoolbar" android:id="@+id/subtoolbar">
+    </include>
+
+<!--
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+  -->
+
+
+
+        <Button
+
+            android:id="@+id/btnBluetoothOn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="블루투스 ON"
+            android:layout_margin="10dp"
+            app:layout_constraintStart_toStartOf="@+id/subtoolbar"
+            app:layout_constraintTop_toBottomOf="@+id/subtoolbar"
+
+            />
+
+    <Button
+        android:id="@+id/btnBluetoothOff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:text="블루투스 OFF"
+        app:layout_constraintStart_toEndOf="@+id/btnBluetoothOn"
+        app:layout_constraintTop_toTopOf="@+id/btnBluetoothOn"
+         />
+    <Button
+        android:id="@+id/btnConnect"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginLeft="5dp"
+        android:text="연결하기"
+        app:layout_constraintStart_toEndOf="@+id/btnBluetoothOff"
+        app:layout_constraintTop_toTopOf="@+id/btnBluetoothOff" />
+
+    <TextView
+        android:id="@+id/tvBluetoothStatus"
+        android:layout_width="170dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="10dp"
+        android:text="status"
+        app:layout_constraintStart_toStartOf="@+id/btnBluetoothOn"
+        app:layout_constraintTop_toBottomOf="@+id/btnBluetoothOn" />
+
+    <TextView
+        android:id="@+id/gpsPosition"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_margin="30dp"
+        android:gravity="center_horizontal"
+        android:text="위치설정에 필요한 것들"
+        android:background="@color/teal_200"
+        app:layout_constraintStart_toStartOf="@+id/tvBluetoothStatus"
+        app:layout_constraintTop_toBottomOf="@+id/tvBluetoothStatus" />
+    <Button
+        android:id="@+id/backToMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:gravity="center_horizontal"
+        android:text="확인"
+        app:layout_constraintStart_toStartOf="@+id/gpsPosition"
+        app:layout_constraintTop_toBottomOf="@+id/gpsPosition"
+
+        />
+
+    <!--
+        </FrameLayout>
+        -->
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
