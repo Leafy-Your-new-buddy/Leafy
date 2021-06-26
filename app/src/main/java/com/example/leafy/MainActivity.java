@@ -66,9 +66,7 @@ public class MainActivity extends AppCompatActivity {
                     selected_fragment=new MainFragment();
                     break;
                 case R.id.camera:
-                    //selected_fragment=new CameraFragment();
-                    Intent intent = new Intent(getApplicationContext(), CameraActivity.class);
-                    startActivity(intent);
+                    selected_fragment=new CameraFragment();
                     break;
 
             }
