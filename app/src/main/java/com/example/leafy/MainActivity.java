@@ -25,7 +25,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
     private BottomNavigationView navigationView;
-
+    Button btn_camera;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +47,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        btn_camera = (Button)findViewById(R.id.btn_camera);
+        btn_camera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), CameraActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
 
@@ -66,9 +73,7 @@ public class MainActivity extends AppCompatActivity {
                     selected_fragment=new MainFragment();
                     break;
                 case R.id.camera:
-                    //selected_fragment=new CameraFragment();
-                    Intent intent = new Intent(getApplicationContext(), CameraActivity.class);
-                    startActivity(intent);
+                    selected_fragment=new CameraFragment();
                     break;
 
             }

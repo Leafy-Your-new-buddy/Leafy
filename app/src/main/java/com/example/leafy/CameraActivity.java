@@ -1,10 +1,13 @@
 package com.example.leafy;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
+import androidx.fragment.app.Fragment;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -14,6 +17,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -22,6 +26,8 @@ import android.widget.Toast;
 
 //import com.gun0912.tedpermission.PermissionListener;
 //import com.gun0912.tedpermission.TedPermission;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.tensorflow.lite.DataType;
 import org.tensorflow.lite.Interpreter;
@@ -72,6 +78,11 @@ public class CameraActivity extends AppCompatActivity {
     TextView tv_result;
     Button btn_classify;
 
+    // tedpermission 대신 추가
+    private static final int MY_CAMERA_REQUEST_CODE = 100;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,6 +90,11 @@ public class CameraActivity extends AppCompatActivity {
 
         tv_result = (TextView)findViewById(R.id.tv_result);
         btn_classify = (Button)findViewById(R.id.classify);
+
+        // tedpermission 대신 추가
+        if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.CAMERA}, MY_CAMERA_REQUEST_CODE);
+        }
 
 //        TedPermission.with(getApplicationContext())
 //                .setPermissionListener(permissionListener)
@@ -245,6 +261,19 @@ public class CameraActivity extends AppCompatActivity {
         return Bitmap.createBitmap(bitmap,0,0,bitmap.getWidth(), bitmap.getHeight(), matrix,true);
     }
 
+    // tedpermission 대신 추가
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == MY_CAMERA_REQUEST_CODE) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "camera permission granted", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(this, "camera permission denied", Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
 //    PermissionListener permissionListener = new PermissionListener() {
 //        @Override
 //        public void onPermissionGranted() {
@@ -254,6 +283,31 @@ public class CameraActivity extends AppCompatActivity {
 //        @Override
 //        public void onPermissionDenied(ArrayList<String> deniedPermissions) {
 //            Toast.makeText(getApplicationContext(), "권한이 거부되었습니다", Toast.LENGTH_SHORT).show();
+//        }
+//    };
+
+//    //하단 메뉴바.
+//    private BottomNavigationView.OnNavigationItemSelectedListener listener= new BottomNavigationView.OnNavigationItemSelectedListener() {
+//        @Override
+//        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//            Fragment selected_fragment=null;
+//            switch (item.getItemId()){
+//                case R.id.calendar:
+//                    selected_fragment=new CalendarFragment();
+//                    break;
+//                case R.id.home:
+//                    selected_fragment=new MainFragment();
+//                    break;
+//                case R.id.camera:
+//                    //selected_fragment=new CameraFragment();
+//                    Intent intent = new Intent(getApplicationContext(), CameraActivity.class);
+//                    startActivity(intent);
+//                    break;
+//
+//            }
+//            getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout,selected_fragment).commit();
+//
+//            return true;
 //        }
 //    };
 }
