@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Leafy">
-        <activity android:name=".CameraActivity"></activity>
+        <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".CameraActivity" />
         <activity
             android:name=".settingActivity"
             android:configChanges="orientation|screenSize" />
@@ -28,15 +29,13 @@
         </activity>
 
         <provider
-            android:authorities="com.example.leafy"
             android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.leafy"
             android:exported="false"
             android:grantUriPermissions="true">
-
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"/>
-
+                android:resource="@xml/file_paths" />
         </provider>
     </application>
 
