@@ -42,6 +42,8 @@ import org.tensorflow.lite.support.image.ops.ResizeWithCropOrPadOp;
 import org.tensorflow.lite.support.label.TensorLabel;
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer;
 
+
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -87,6 +89,8 @@ public class CameraActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
+
+
 
         tv_result = (TextView)findViewById(R.id.tv_result);
         btn_classify = (Button)findViewById(R.id.classify);
@@ -154,6 +158,8 @@ public class CameraActivity extends AppCompatActivity {
                 showresult();
             }
         });
+
+
     }
 
     private TensorImage loadImage(final Bitmap bitmap) {
