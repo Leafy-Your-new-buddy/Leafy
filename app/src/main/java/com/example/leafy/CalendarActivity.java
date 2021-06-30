@@ -47,9 +47,15 @@ public class CalendarActivity extends AppCompatActivity implements calendarAdapt
         calendarRecyclerView.setAdapter((calendarAdapter));
 
     }
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private String monthYearFromDate(LocalDate date){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM YYYY");
+        return date.format(formatter);
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     private ArrayList<String> daysInMonthArray(LocalDate date) {
+        System.out.println("daysInMonthArray");
         ArrayList<String> daysInMonthArray = new ArrayList<>();
         YearMonth yearMonth = YearMonth.from(date);
 
@@ -69,11 +75,7 @@ public class CalendarActivity extends AppCompatActivity implements calendarAdapt
         return daysInMonthArray;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    private String monthYearFromDate(LocalDate date){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM YYYY");
-        return date.format(formatter);
-    }
+
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void previousMonthAction(View view) {
@@ -96,4 +98,5 @@ public class CalendarActivity extends AppCompatActivity implements calendarAdapt
                     Toast.LENGTH_LONG).show();
         }
     }
+
 }

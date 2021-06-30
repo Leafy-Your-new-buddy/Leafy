@@ -30,9 +30,6 @@ public class CameraFragment extends Fragment implements View.OnClickListener {
         btn_camera=view.findViewById(R.id.btn_camera);
         btn_camera.setOnClickListener(this);
 
-
-
-
         return view;
     }
 
@@ -44,7 +41,6 @@ public class CameraFragment extends Fragment implements View.OnClickListener {
                 Intent intent = new Intent(getActivity(),CameraActivity.class);
                 startActivity(intent);
                 break;
-
         }
     }
 }
