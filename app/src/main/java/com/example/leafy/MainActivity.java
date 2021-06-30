@@ -22,6 +22,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
     private BottomNavigationView navigationView;
@@ -57,6 +64,10 @@ public class MainActivity extends AppCompatActivity {
 */
        // CameraFragment fragcam;
        // fragcam.clickCam();
+
+
+
+
 
 
     }
