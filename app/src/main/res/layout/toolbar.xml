@@ -32,25 +32,15 @@
 
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
-            android:layout_toLeftOf="@+id/account"
-            android:id="@+id/setting"
-
-
-            android:src="@drawable/ic_setting"></ImageView>
-
-        <ImageView
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_account"
-        android:id="@+id/account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/setting"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_setting"></ImageView>
 
-            android:layout_alignParentRight="true"></ImageView>
+
     </RelativeLayout>
 
 </RelativeLayout>
