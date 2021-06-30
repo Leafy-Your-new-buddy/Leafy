@@ -25,6 +25,7 @@ public class RegisterActivity extends AppCompatActivity {
     private DatabaseReference mDatabaseRef;  //실시간 데이터베이스
     private EditText mEtEmail,mEtPwd,mEtName;  //회원가입 입력필드
     private Button mBtnRegister;  //회원가입 버튼
+    private Button mainButton; //로그인 화면으로 돌아가는 버튼
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +38,8 @@ public class RegisterActivity extends AppCompatActivity {
         mEtPwd=findViewById(R.id.et_pwd);
         mEtName=findViewById(R.id.et_name);
         mBtnRegister=findViewById(R.id.btn_register);
+
+        mainButton=findViewById(R.id.gotoLogin);
 
         mBtnRegister.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -81,6 +84,17 @@ public class RegisterActivity extends AppCompatActivity {
                     });
 
                 }
+            }
+        });
+
+        //로그인 화면으로 돌아감.
+        mainButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+
+                //회원가입 버튼을 누름
+                Intent intent= new Intent(RegisterActivity.this,LoginActivity.class);
+                startActivity(intent);
             }
         });
     }

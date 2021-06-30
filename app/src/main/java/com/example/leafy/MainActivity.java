@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout,new MainFragment()).commit();
         navigationView.getMenu().getItem(1).setChecked(true);
 
+        //세팅화면으로 이동
         ImageView iv = (ImageView) findViewById(R.id.setting);
         iv.setOnClickListener(new View.OnClickListener() {
             @Override
