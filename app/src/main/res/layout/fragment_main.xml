@@ -39,5 +39,38 @@
         android:layout_margin="120dp"
         android:text="물주기" />
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/weatherIcon"
+        android:src="@drawable/ic_launcher_foreground"
+        android:layout_marginTop="400dp"></ImageView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/temperature"
+        android:text="0*C"
+        android:textSize="25sp"
+        android:layout_marginTop="400dp"
+        android:layout_marginLeft="150dp"></TextView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/weatherCondition"
+        android:text="--"
+        android:textSize="20sp"
+        android:layout_marginTop="430dp"
+        android:layout_marginLeft="150dp"></TextView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cityName"
+        android:textSize="20sp"
+        android:text="Loading___"
+        android:layout_marginTop="460dp"
+        android:layout_marginLeft="150dp"></TextView>
 
 </FrameLayout>
