@@ -22,10 +22,19 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -52,7 +61,9 @@ public class settingActivity extends AppCompatActivity {
     BluetoothDevice mBluetoothDevice;
     BluetoothSocket mBluetoothSocket;
 
-    public static String test="Ddd";
+    private DatabaseReference mDatabaseRef;  //실시간 데이터베이스
+
+    //public static String test="Ddd";
 
     final static int BT_REQUEST_ENABLE = 1;
     final static int BT_MESSAGE_READ = 2;
@@ -150,6 +161,29 @@ public class settingActivity extends AppCompatActivity {
         };
 
 
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser(); // 로그인한 유저의 정보 가져오기
+        String uid = user != null ? user.getUid() : null; // 로그인한 유저의 고유 uid 가져오기
+        mDatabaseRef= FirebaseDatabase.getInstance().getReference("appname");
+        TextView name=findViewById(R.id.settingName);
+        TextView email=findViewById(R.id.settingEmail);
+        //상단에 로그인한 유저의 닉네임, 이메일 표시
+        mDatabaseRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                UserAccount value =  snapshot.child("UserAccount").child(uid).getValue(UserAccount.class);
+                name.setText(value.getName());
+                email.setText(value.getEmailId());
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
     }
 
