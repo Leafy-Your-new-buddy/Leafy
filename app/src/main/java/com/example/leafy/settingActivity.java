@@ -61,6 +61,7 @@ public class settingActivity extends AppCompatActivity {
     BluetoothDevice mBluetoothDevice;
     BluetoothSocket mBluetoothSocket;
 
+    private FirebaseAuth mFirebaseAuth; //파이어베이스 인증
     private DatabaseReference mDatabaseRef;  //실시간 데이터베이스
 
     //public static String test="Ddd";
@@ -84,13 +85,27 @@ public class settingActivity extends AppCompatActivity {
 
 
         //확인 누르면 메인으로 돌아감
-        Button iv = (Button) findViewById(R.id.backToMain);
-        iv.setOnClickListener(new View.OnClickListener() {
+        Button back = (Button) findViewById(R.id.backToMain);
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
                //frag.setTextViewValue(readMessage); //임시로 추가
+
+            }
+        });
+
+        mFirebaseAuth=FirebaseAuth.getInstance();
+        //로그아웃 누르면 로그인화면으로
+        Button logout = (Button) findViewById(R.id.logOut);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mFirebaseAuth.signOut();
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(intent);
+                //frag.setTextViewValue(readMessage); //임시로 추가
 
             }
         });
