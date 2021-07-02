@@ -91,7 +91,7 @@ public class settingActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
-               //frag.setTextViewValue(readMessage); //임시로 추가
+
 
             }
         });
@@ -105,7 +105,7 @@ public class settingActivity extends AppCompatActivity {
                 mFirebaseAuth.signOut();
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
-                //frag.setTextViewValue(readMessage); //임시로 추가
+
 
             }
         });

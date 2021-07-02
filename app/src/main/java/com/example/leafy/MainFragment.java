@@ -85,6 +85,7 @@ public class MainFragment extends Fragment implements View.OnClickListener{
 
     Button btn_test;
     static TextView text;
+    TextView water_feedback;
     String uid;
 
     private DatabaseReference mDatabaseRef;  //실시간 데이터베이스
@@ -100,6 +101,8 @@ public class MainFragment extends Fragment implements View.OnClickListener{
         view= inflater.inflate(R.layout.fragment_main, null);
         //위에 만들어진 view객체 안에 있는 TextView를 찾아오기
         text= (TextView)view.findViewById(R.id.tvReceiveData_main);
+        water_feedback= (TextView)view.findViewById(R.id.water_Feedback);
+
 
         weatherState = (TextView)view.findViewById(R.id.weatherCondition);
         Temperature = (TextView)view.findViewById(R.id.temperature);
@@ -109,15 +112,19 @@ public class MainFragment extends Fragment implements View.OnClickListener{
         context = container.getContext();   // toast 사용에 필요
 
         if(!BluetoothAdapter.getDefaultAdapter().isEnabled()){
-            setTextViewValue("블루투스를 활성화해 주세요.");
+         //   setTextViewValue("블루투스를 활성화해 주세요.");
+            water_feedback.setText("블루투스를 활성화해 주세요.");
         }
         else {
             String humid= settingActivity.readMessage;
             if(humid==null){
-                setTextViewValue("수분센서와의 연결을 확인해주세요.");
+              //  setTextViewValue("수분센서와의 연결을 확인해주세요.");
+                water_feedback.setText("수분센서와의 연결을 확인해주세요.");
             }
             else{
                 setTextViewValue(humid);
+                water_feedback.setText("(수분량에 따른 피드백)");
+
             }
 
         }

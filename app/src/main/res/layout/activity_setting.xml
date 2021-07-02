@@ -59,16 +59,7 @@
         app:layout_constraintStart_toStartOf="@+id/btnBluetoothOn"
         app:layout_constraintTop_toBottomOf="@+id/btnBluetoothOn" />
 
-    <TextView
-        android:id="@+id/gpsPosition"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_margin="30dp"
-        android:gravity="center_horizontal"
-        android:text="위치설정에 필요한 것들"
-        android:background="@color/teal_200"
-        app:layout_constraintStart_toStartOf="@+id/tvBluetoothStatus"
-        app:layout_constraintTop_toBottomOf="@+id/tvBluetoothStatus" />
+
     <Button
         android:id="@+id/backToMain"
         android:layout_width="match_parent"
@@ -77,8 +68,8 @@
         android:gravity="center_horizontal"
 
         android:text="확인"
-        app:layout_constraintStart_toStartOf="@+id/gpsPosition"
-        app:layout_constraintTop_toBottomOf="@+id/gpsPosition"
+        app:layout_constraintStart_toStartOf="@+id/tvBluetoothStatus"
+        app:layout_constraintTop_toBottomOf="@+id/tvBluetoothStatus"
 
         />
 
