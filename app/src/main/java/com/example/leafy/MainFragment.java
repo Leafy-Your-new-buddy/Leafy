@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,7 +71,7 @@ public class MainFragment extends Fragment implements View.OnClickListener{
     private Context context;
 
     //String Location_Provider = LocationManager.GPS_PROVIDER;
-    String Location_Provider = LocationManager.NETWORK_PROVIDER;
+    //String Location_Provider = LocationManager.NETWORK_PROVIDER;
     TextView NameofCity, weatherState, Temperature;
     ImageView mweatherIcon;
     RelativeLayout mCityFinder;
@@ -228,6 +229,12 @@ public class MainFragment extends Fragment implements View.OnClickListener{
 
         mLocationManager = (LocationManager)getActivity().getSystemService(Context.LOCATION_SERVICE);
 
+        boolean isGPSEnabled = mLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        boolean isNetworkEnabled = mLocationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+
+        Log.d("MainFrag", "isGEPEnabled: "+isGPSEnabled);
+        Log.d("MainFrag", "isNetworkEnabled: "+isGPSEnabled);
+
         mLocationListner = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
@@ -273,8 +280,9 @@ public class MainFragment extends Fragment implements View.OnClickListener{
             ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.ACCESS_FINE_LOCATION},REQUEST_CODE);
             return;
         }
-        mLocationManager.requestLocationUpdates(Location_Provider, MIN_TIME, MIN_DISTANCE, mLocationListner);
-
+        //mLocationManager.requestLocationUpdates(Location_Provider, MIN_TIME, MIN_DISTANCE, mLocationListner);
+        mLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, MIN_TIME, MIN_DISTANCE, mLocationListner);
+        mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, MIN_TIME, MIN_DISTANCE, mLocationListner);
     }
 
     @Override
