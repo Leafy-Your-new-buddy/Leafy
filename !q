@@ -1,0 +1,136 @@
+[33mcommit 3722b11a8be4bdce38fc36c73e0bc8799c1036b3[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Soohyeon B <56013677+SoohyeonB@users.noreply.github.com>
+Date:   Tue Jun 29 17:11:54 2021 +0900
+
+    Update local.properties
+
+[33mcommit 199f76cde201a5fd5376f2fbe60f0e8823b44850[m
+Author: Soohyeon B <56013677+SoohyeonB@users.noreply.github.com>
+Date:   Tue Jun 29 17:09:59 2021 +0900
+
+    Update local.properties
+
+[33mcommit e495b3b3361d03a20e4d6728707e47968c189d9d[m
+Merge: 62a2e6f 3a2ac98
+Author: Soohyeon B <56013677+SoohyeonB@users.noreply.github.com>
+Date:   Tue Jun 29 17:00:02 2021 +0900
+
+    Merge pull request #6 from Leafy-Your-new-buddy/feature_calendar
+    
+    달력 추가
+
+[33mcommit 62a2e6f31a41a5c959a9578948dcd40e5e1f8eab[m
+Author: Soohyeon B <cabbage9963@gmail.com>
+Date:   Tue Jun 29 16:58:53 2021 +0900
+
+    달력 main 추가
+
+[33mcommit 3a2ac9828a88ecead0b843178ca80f2b6333739a[m[33m ([m[1;31morigin/feature_calendar[m[33m)[m
+Author: Soohyeon B <cabbage9963@gmail.com>
+Date:   Tue Jun 29 16:52:19 2021 +0900
+
+    달력 추가
+
+[33mcommit 9499e3f2749587df0f15f1c66f0e055ca5156eb3[m
+Merge: 5bd6ff3 c5a4773
+Author: jiwon199 <53902714+jiwon199@users.noreply.github.com>
+Date:   Tue Jun 29 16:31:31 2021 +0900
+
+    Merge pull request #5 from Leafy-Your-new-buddy/camera
+    
+    카메라임시버튼 튕김 해결
+
+[33mcommit c5a47731092ea8bddcc8b97a6dff8efeb58cedd0[m[33m ([m[1;31morigin/camera[m[33m)[m
+Author: jiwon199 <jiwonchoi99@naver.com>
+Date:   Tue Jun 29 16:30:20 2021 +0900
+
+    카메라임시버튼 튕김 해결
+
+[33mcommit 5bd6ff3060eb571226dce73d6a5392b37f47e0ea[m
+Merge: 3de10dd d2c3267
+Author: jiwon199 <53902714+jiwon199@users.noreply.github.com>
+Date:   Mon Jun 28 21:37:43 2021 +0900
+
+    Merge pull request #4 from Leafy-Your-new-buddy/feature_login
+    
+    firebase 연결 세팅
+
+[33mcommit d2c32678d77fe2d30ab8af365c206220453723cd[m[33m ([m[1;31morigin/feature_login[m[33m)[m
+Author: jiwon199 <jiwonchoi99@naver.com>
+Date:   Mon Jun 28 21:36:19 2021 +0900
+
+    firebase 연결 세팅
+
+[33mcommit 3de10ddd62e341aa4d555930b9639cc46c3132ba[m
+Merge: 2622816 29c1cf0
+Author: EmilyCh0 <67777523+EmilyCh0@users.noreply.github.com>
+Date:   Mon Jun 28 13:36:07 2021 +0900
+
+    Merge pull request #3 from Leafy-Your-new-buddy/camera
+    
+    fragment에서 계속 튕겨서 main에 '카메라임시버튼' 추가함
+
+[33mcommit 29c1cf06c183a40e23bc93225a3fbdb42c437211[m
+Author: EmilyCh0 <67777523+EmilyCh0@users.noreply.github.com>
+Date:   Mon Jun 28 13:34:23 2021 +0900
+
+    fragment에서 계속 튕겨서 main에 '카메라임시버튼' 추가함
+    이제 튕김 현상 없이 동작!
+
+[33mcommit 2622816ac1ad387c48e40d0422ae761b02fe1b19[m
+Merge: 1d06955 7a0fb6d
+Author: EmilyCh0 <67777523+EmilyCh0@users.noreply.github.com>
+Date:   Mon Jun 28 12:45:29 2021 +0900
+
+    Merge pull request #2 from Leafy-Your-new-buddy/camera
+    
+    촬영 진단 기능
+
+[33mcommit 7a0fb6d4c82db53794814488eebc7f5bb5c28923[m
+Author: EmilyCh0 <67777523+EmilyCh0@users.noreply.github.com>
+Date:   Mon Jun 28 12:42:29 2021 +0900
+
+    촬영 진단 기능
+    권한 설정 부분 수정 필요... (수동으로 카메라 권한 허용해주면 튕김없이 동작)
+
+[33mcommit 1d06955b462955488a3dc0028d924580c4fda3ec[m
+Author: EmilyCh0 <67777523+EmilyCh0@users.noreply.github.com>
+Date:   Sat Jun 26 13:56:02 2021 +0900
+
+    Revert "+ 앨범 사진 진단 결과 알려주기"
+    
+    This reverts commit 1ab55d59714031dda491c8fe08943bc2bd12902a.
+
+[33mcommit 1ab55d59714031dda491c8fe08943bc2bd12902a[m
+Author: EmilyCh0 <67777523+EmilyCh0@users.noreply.github.com>
+Date:   Sat Jun 26 13:34:02 2021 +0900
+
+    + 앨범 사진 진단 결과 알려주기
+    subactivity로 했는데 튕김 현상 있음 ㅠㅠ
+
+[33mcommit 1c7d754e8f8b6f9315488183af0d6bb318055a30[m
+Merge: 909d0d1 4856f99
+Author: jiwon199 <53902714+jiwon199@users.noreply.github.com>
+Date:   Fri Jun 25 21:09:14 2021 +0900
+
+    Merge pull request #1 from Leafy-Your-new-buddy/feature_arduino
+    
+    아두이노 센서 연결 구현
+
+[33mcommit 4856f99690188c326c6fcc8adb64fd7d8e34132e[m[33m ([m[1;31morigin/feature_arduino[m[33m)[m
+Author: jiwon199 <jiwonchoi99@naver.com>
+Date:   Fri Jun 25 21:06:28 2021 +0900
+
+    아두이노 센서 연결 구현
+
+[33mcommit 909d0d189394e6bc459671e59e9e61756ffe317f[m
+Author: jiwon199 <53902714+jiwon199@users.noreply.github.com>
+Date:   Thu Jun 24 13:02:44 2021 +0900
+
+    Create README.md
+
+[33mcommit e7a285d27af0ca02d2eec9840516a2d2c6a03a98[m
+Author: jiwon199 <jiwonchoi99@naver.com>
+Date:   Thu Jun 24 12:56:13 2021 +0900
+
+    first commit

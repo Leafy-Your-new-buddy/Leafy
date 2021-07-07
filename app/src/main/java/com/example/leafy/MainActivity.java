@@ -65,9 +65,16 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             Fragment selected_fragment=null;
+            //calendarAdapter cal_frag = new calendarAdapter();
+            /*case R.id.calendarRecyclerView:
+                Intent intent = new Intent(getActivity(),CalendarActivity.class);
+                startActivity(intent);
+                break;
+            */
             switch (item.getItemId()){
                 case R.id.calendar:
-                    selected_fragment=new CalendarFragment();
+
+                    getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout,selected_fragment).commit();
                     break;
                 case R.id.home:
                     selected_fragment=new MainFragment();
