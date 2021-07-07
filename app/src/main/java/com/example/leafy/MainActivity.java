@@ -4,12 +4,19 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.Menu;
@@ -26,6 +33,11 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -43,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout,new MainFragment()).commit();
         navigationView.getMenu().getItem(1).setChecked(true);
 
+        //세팅화면으로 이동
         ImageView iv = (ImageView) findViewById(R.id.setting);
         iv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,8 +75,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 */
-       // CameraFragment fragcam;
-       // fragcam.clickCam();
+        // CameraFragment fragcam;
+        // fragcam.clickCam();
 
 
 

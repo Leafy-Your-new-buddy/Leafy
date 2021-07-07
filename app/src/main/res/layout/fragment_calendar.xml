@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CalendarFragment">
+    tools:context=".CameraFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
@@ -11,5 +11,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="calendar_fragment" />
+
+    <Button
+        android:id="@+id/btn_calendar"
+        android:gravity="center"
+        android:layout_width="152dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="150dp"
+
+        android:layout_marginTop="200dp"
+
+        android:text="캘린더 임시버튼" />
 
 </FrameLayout>
