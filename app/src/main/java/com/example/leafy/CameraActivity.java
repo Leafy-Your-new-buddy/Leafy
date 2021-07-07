@@ -1,6 +1,7 @@
 package com.example.leafy;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
@@ -14,6 +15,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -41,6 +43,8 @@ import org.tensorflow.lite.support.image.ops.ResizeOp;
 import org.tensorflow.lite.support.image.ops.ResizeWithCropOrPadOp;
 import org.tensorflow.lite.support.label.TensorLabel;
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer;
+
+
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -83,10 +87,13 @@ public class CameraActivity extends AppCompatActivity {
 
 
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
+
+
 
         tv_result = (TextView)findViewById(R.id.tv_result);
         btn_classify = (Button)findViewById(R.id.classify);
@@ -154,6 +161,8 @@ public class CameraActivity extends AppCompatActivity {
                 showresult();
             }
         });
+
+
     }
 
     private TensorImage loadImage(final Bitmap bitmap) {

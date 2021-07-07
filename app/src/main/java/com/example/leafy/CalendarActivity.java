@@ -1,99 +1,167 @@
 package com.example.leafy;
 
-import android.os.Build;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.annotation.SuppressLint;
+import android.content.ContentValues;
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.CalendarView;
+import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 
-import java.time.LocalDate;
-import java.time.YearMonth;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
+public class CalendarActivity extends AppCompatActivity {
 
-public class CalendarActivity extends AppCompatActivity implements CalendarAdapter.OnItemListener {
-    private TextView monthYearText;
-    private RecyclerView calendarRecyclerView;
-    private LocalDate selectedDate;
+    public String fname=null;
+    public String str=null;
+    public CalendarView calendarView;
+    public Button cha_Btn,del_Btn,save_Btn;
+    public TextView diaryTextView,textView2,textView3;
+    public EditText contextEditText;
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        initWidgets();
-        selectedDate = LocalDate.now();
-        setMonthView();
-    }
+        setContentView(R.layout.fragment_calendar);
+        calendarView=findViewById(R.id.calendarView);
+        diaryTextView=findViewById(R.id.diaryTextView);
+        save_Btn=findViewById(R.id.save_Btn);
+        del_Btn=findViewById(R.id.del_Btn);
+        cha_Btn=findViewById(R.id.cha_Btn);
+        textView2=findViewById(R.id.textView2);
+        //textView3=findViewById(R.id.textView3);
+        contextEditText=findViewById(R.id.contextEditText);
+        //로그인 및 회원가입 엑티비티에서 이름을 받아옴
 
-    private void initWidgets() {
-        calendarRecyclerView = findViewById(R.id.calendarRecyclerView);
-        monthYearText = findViewById(R.id.monthYearTV);
-    }
+        Intent intent=getIntent();
+        String name=intent.getStringExtra("userName");
+        final String userID=intent.getStringExtra("userID");
+        //textView3.setText(name+"님의 달력 일기장");
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    private void setMonthView() {
-        monthYearText.setText(monthYearFromDate(selectedDate));
-        ArrayList<String> daysInMonth = daysInMonthArray(selectedDate);
 
-        CalendarAdapter calendarAdapter = new CalendarAdapter(daysInMonth, this);
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 7);
-        calendarRecyclerView.setLayoutManager((layoutManager));
-        calendarRecyclerView.setAdapter((calendarAdapter));
-
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    private ArrayList<String> daysInMonthArray(LocalDate date) {
-        ArrayList<String> daysInMonthArray = new ArrayList<>();
-        YearMonth yearMonth = YearMonth.from(date);
-
-        int daysInMonth = yearMonth.lengthOfMonth();
-
-        LocalDate firstOfMonth = selectedDate.withDayOfMonth(1);
-        int dayOfWeek = firstOfMonth.getDayOfWeek().getValue();
-
-        for(int i=1; i<=42; i++){
-            if(i<= dayOfWeek || i>daysInMonth+dayOfWeek){
-                daysInMonthArray.add("");
+        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+                diaryTextView.setVisibility(View.VISIBLE);
+                save_Btn.setVisibility(View.VISIBLE);
+                contextEditText.setVisibility(View.VISIBLE);
+                textView2.setVisibility(View.INVISIBLE);
+                cha_Btn.setVisibility(View.INVISIBLE);
+                del_Btn.setVisibility(View.INVISIBLE);
+                diaryTextView.setText(String.format("%d / %d / %d",year,month+1,dayOfMonth));
+                contextEditText.setText("");
+                checkDay(year,month,dayOfMonth,userID);
             }
-            else {
-                daysInMonthArray.add(String.valueOf((i - dayOfWeek)));
+        });
+        save_Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saveDiary(fname);
+                str=contextEditText.getText().toString();
+                textView2.setText(str);
+                save_Btn.setVisibility(View.INVISIBLE);
+                cha_Btn.setVisibility(View.VISIBLE);
+                del_Btn.setVisibility(View.VISIBLE);
+                contextEditText.setVisibility(View.INVISIBLE);
+                textView2.setVisibility(View.VISIBLE);
+
             }
+        });
+    }
+
+    public void  checkDay(int cYear,int cMonth,int cDay,String userID){
+        fname=""+userID+cYear+"-"+(cMonth+1)+""+"-"+cDay+".txt";//저장할 파일 이름설정
+        FileInputStream fis=null;//FileStream fis 변수
+
+        try{
+            fis=openFileInput(fname);
+
+            byte[] fileData=new byte[fis.available()];
+            fis.read(fileData);
+            fis.close();
+
+            str=new String(fileData);
+
+            contextEditText.setVisibility(View.INVISIBLE);
+            textView2.setVisibility(View.VISIBLE);
+            textView2.setText(str);
+
+            save_Btn.setVisibility(View.INVISIBLE);
+            cha_Btn.setVisibility(View.VISIBLE);
+            del_Btn.setVisibility(View.VISIBLE);
+
+            cha_Btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    contextEditText.setVisibility(View.VISIBLE);
+                    textView2.setVisibility(View.INVISIBLE);
+                    contextEditText.setText(str);
+
+                    save_Btn.setVisibility(View.VISIBLE);
+                    cha_Btn.setVisibility(View.INVISIBLE);
+                    del_Btn.setVisibility(View.INVISIBLE);
+                    textView2.setText(contextEditText.getText());
+                }
+
+            });
+            del_Btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    textView2.setVisibility(View.INVISIBLE);
+                    contextEditText.setText("");
+                    contextEditText.setVisibility(View.VISIBLE);
+                    save_Btn.setVisibility(View.VISIBLE);
+                    cha_Btn.setVisibility(View.INVISIBLE);
+                    del_Btn.setVisibility(View.INVISIBLE);
+                    removeDiary(fname);
+                }
+            });
+            if(textView2.getText()==null){
+                textView2.setVisibility(View.INVISIBLE);
+                diaryTextView.setVisibility(View.VISIBLE);
+                save_Btn.setVisibility(View.VISIBLE);
+                cha_Btn.setVisibility(View.INVISIBLE);
+                del_Btn.setVisibility(View.INVISIBLE);
+                contextEditText.setVisibility(View.VISIBLE);
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
         }
-        return daysInMonthArray;
     }
+    @SuppressLint("WrongConstant")
+    public void removeDiary(String readDay){
+        FileOutputStream fos=null;
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    private String monthYearFromDate(LocalDate date){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM YYYY");
-        return date.format(formatter);
-    }
+        try{
+            fos=openFileOutput(readDay,MODE_NO_LOCALIZED_COLLATORS);
+            String content="";
+            fos.write((content).getBytes());
+            fos.close();
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public void previousMonthAction(View view) {
-        selectedDate = selectedDate.minusMonths(1);
-        setMonthView();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
+    @SuppressLint("WrongConstant")
+    public void saveDiary(String readDay){
+        FileOutputStream fos=null;
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public void nextMonthAction(View view) {
-        selectedDate = selectedDate.plusMonths(1);
-        setMonthView();
-    }
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    @Override
-    public void onItemClick(int position, String dayText) {
-        if(dayText.equals("")){
-            String message = "Selected Date "+dayText+" "+ monthYearFromDate(selectedDate);
-            Toast.makeText(this,
-                    message,
-                    Toast.LENGTH_LONG).show();
+        try{
+            fos=openFileOutput(readDay,MODE_NO_LOCALIZED_COLLATORS);
+            String content=contextEditText.getText().toString();
+            fos.write((content).getBytes());
+            fos.close();
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 }

@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
     <include
         android:id="@+id/include3"
         layout="@layout/toolbar"></include>
@@ -23,6 +24,7 @@
 
         >
 
+        <!--
         <Button
             android:id="@+id/btn_camera"
             android:layout_width="152dp"
@@ -32,6 +34,7 @@
             android:layout_marginTop="100dp"
 
             android:text="카메라임시버튼" />
+            -->
     </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

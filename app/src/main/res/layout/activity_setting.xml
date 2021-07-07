@@ -18,18 +18,19 @@
   -->
 
 
+    <Button
 
-        <Button
+        android:id="@+id/btnBluetoothOn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="15dp"
 
-            android:id="@+id/btnBluetoothOn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="블루투스 ON"
-            android:layout_margin="10dp"
-            app:layout_constraintStart_toStartOf="@+id/subtoolbar"
-            app:layout_constraintTop_toBottomOf="@+id/subtoolbar"
+        android:text="블루투스 ON"
+        app:layout_constraintStart_toStartOf="@+id/subtoolbar"
+        app:layout_constraintTop_toBottomOf="@+id/settingEmail"
 
-            />
+        />
 
     <Button
         android:id="@+id/btnBluetoothOff"
@@ -58,27 +59,54 @@
         app:layout_constraintStart_toStartOf="@+id/btnBluetoothOn"
         app:layout_constraintTop_toBottomOf="@+id/btnBluetoothOn" />
 
-    <TextView
-        android:id="@+id/gpsPosition"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_margin="30dp"
-        android:gravity="center_horizontal"
-        android:text="위치설정에 필요한 것들"
-        android:background="@color/teal_200"
-        app:layout_constraintStart_toStartOf="@+id/tvBluetoothStatus"
-        app:layout_constraintTop_toBottomOf="@+id/tvBluetoothStatus" />
+
     <Button
         android:id="@+id/backToMain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
         android:gravity="center_horizontal"
+
         android:text="확인"
-        app:layout_constraintStart_toStartOf="@+id/gpsPosition"
-        app:layout_constraintTop_toBottomOf="@+id/gpsPosition"
+        app:layout_constraintStart_toStartOf="@+id/tvBluetoothStatus"
+        app:layout_constraintTop_toBottomOf="@+id/tvBluetoothStatus"
 
         />
+
+    <Button
+        android:id="@+id/logOut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:gravity="center_horizontal"
+        android:text="로그아웃"
+        android:textColor="@color/red"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/backToMain" />
+
+    <TextView
+        android:id="@+id/settingName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="30dp"
+        android:text="이름"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/subtoolbar" />
+
+    <TextView
+        android:id="@+id/settingEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="email@gmail.com"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/settingName" />
 
     <!--
         </FrameLayout>

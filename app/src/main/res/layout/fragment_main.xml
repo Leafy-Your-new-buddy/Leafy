@@ -13,26 +13,94 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-
     <TextView
+
+        android:id="@+id/water_Feedback"
+        android:layout_marginTop="110dp"
+        android:layout_marginLeft="90dp"
+        android:layout_marginRight="20dp"
+
+        android:layout_marginBottom="20dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="80dp"
+        android:text="블루투스 활성화"
         android:gravity="center"
-        android:text="main_fragment" />
+        android:background="@drawable/edge"
+
+
+        />
+    <de.hdodenhof.circleimageview.CircleImageView
+
+        android:id="@+id/waterdrop"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/water"
+        app:civ_border_color="@color/black"
+        app:civ_border_width="3dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="20dp"
+        app:civ_circle_background_color="@color/white"
+
+        />
+
 
     <TextView
 
         android:id="@+id/tvReceiveData_main"
-        android:layout_gravity="center"
+        android:layout_marginTop="200dp"
+        android:layout_marginLeft="20dp"
         android:gravity="center_horizontal"
         android:layout_marginBottom="20dp"
+        android:layout_width="100dp"
+        android:textSize="20dp"
+        android:layout_height="22dp"
+        android:text=""
 
+
+         />
+
+
+
+    <Button
+        android:id="@+id/test_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_gravity="bottom"
+        android:text="물주기" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/weatherIcon"
+        android:src="@drawable/ic_launcher_foreground"
+        android:layout_marginTop="400dp"></ImageView>
+
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="18dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/temperature"
+        android:text="0*C"
+        android:textSize="25sp"
+        android:layout_marginTop="400dp"
+        android:layout_marginLeft="150dp"></TextView>
 
-        android:text="수분량"
-        app:layout_constraintStart_toStartOf="@+id/maintoolbar"
-        app:layout_constraintTop_toBottomOf="@+id/maintoolbar" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/weatherCondition"
+        android:text="--"
+        android:textSize="20sp"
+        android:layout_marginTop="430dp"
+        android:layout_marginLeft="150dp"></TextView>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cityName"
+        android:textSize="20sp"
+        android:text="Loading___"
+        android:layout_marginTop="460dp"
+        android:layout_marginLeft="150dp"></TextView>
 
 </FrameLayout>
