@@ -232,6 +232,7 @@ public class MainFragment extends Fragment implements View.OnClickListener{
         boolean isGPSEnabled = mLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
         boolean isNetworkEnabled = mLocationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
 
+        // 로그 확인용
         Log.d("MainFrag", "isGEPEnabled: "+isGPSEnabled);
         Log.d("MainFrag", "isNetworkEnabled: "+isGPSEnabled);
 
@@ -264,7 +265,7 @@ public class MainFragment extends Fragment implements View.OnClickListener{
             @Override
             public void onProviderDisabled(String provider) {
                 //not able to get location
-                Toast.makeText(context,"Not able to get location", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,"위치정보를 받아올 수 없습니다.", Toast.LENGTH_SHORT).show();
             }
         };
 
@@ -294,7 +295,7 @@ public class MainFragment extends Fragment implements View.OnClickListener{
         {
             if(grantResults.length>0 && grantResults[0]==PackageManager.PERMISSION_GRANTED)
             {
-                Toast.makeText(context,"Location get Succesffully", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,"위치정보 받기 완료", Toast.LENGTH_SHORT).show();
                 getWeatherForCurrentLocation();
             }
             else
@@ -314,7 +315,7 @@ public class MainFragment extends Fragment implements View.OnClickListener{
             @Override
             public void onSuccess(int statusCode, cz.msebera.android.httpclient.Header[] headers, JSONObject response) {
                 //super.onSuccess(statusCode, headers, response);
-                Toast.makeText(context,"Data Get Success",Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,"위치정보를 받아왔습니다.",Toast.LENGTH_SHORT).show();
                 weatherData weatherD=weatherData.fromJson(response);
                 updateUI(weatherD);
             }
