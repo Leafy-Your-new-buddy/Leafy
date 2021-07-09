@@ -26,7 +26,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".CameraActivity" />
+        <activity android:name=".CalendarActivity" >
+
+
+        </activity>
+
+        <activity android:name=".CameraActivity" >
+
+        </activity>
         <activity
             android:name=".settingActivity"
             android:configChanges="orientation|screenSize" />
