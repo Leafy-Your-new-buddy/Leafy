@@ -43,7 +43,7 @@
 
             android:layout_width="300dp"
             android:layout_height="300dp"
-            android:background="@drawable/ic_launcher_background" />
+            android:background="@drawable/takephoto" />
         android:orientation="horizontal"
         android:gravity="center"
         android:layout_marginTop="600dp"
