@@ -70,11 +70,12 @@
         android:text="물주기" />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:id="@+id/weatherIcon"
         android:src="@drawable/ic_launcher_foreground"
-        android:layout_marginTop="400dp"></ImageView>
+        android:layout_marginTop="200dp"
+        ></ImageView>
 
     <TextView
         android:layout_width="match_parent"
@@ -82,25 +83,57 @@
         android:id="@+id/temperature"
         android:text="0*C"
         android:textSize="25sp"
-        android:layout_marginTop="400dp"
+        android:layout_marginTop="200dp"
         android:layout_marginLeft="150dp"></TextView>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="230dp"
+        android:layout_marginLeft="150dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/weatherCondition"
+            android:text="--"
+            android:textSize="20sp"></TextView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/cityName"
+            android:textSize="15sp"
+            android:layout_marginLeft="50dp"
+            android:text="Loading___"></TextView>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:src="@drawable/healthy"
+        android:layout_marginTop="230dp"
+        android:layout_gravity="center_horizontal"
+        ></ImageView>
 
     <TextView
+        android:id="@+id/leafy_condition"
+        android:layout_marginTop="475dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/weatherCondition"
-        android:text="--"
-        android:textSize="20sp"
-        android:layout_marginTop="430dp"
-        android:layout_marginLeft="150dp"></TextView>
-
+        android:layout_height="120dp"
+        android:text="오늘은 기분이 좋아요!"
+        android:gravity="center"
+        android:backgroundTint="#D1EAB7"
+        android:background="@color/black"
+        />
     <TextView
+        android:id="@+id/succulent_name"
+        android:layout_marginTop="450dp"
+        android:layout_marginHorizontal="130dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/cityName"
-        android:textSize="20sp"
-        android:text="Loading___"
-        android:layout_marginTop="460dp"
-        android:layout_marginLeft="150dp"></TextView>
+        android:layout_height="50dp"
+        android:text="LEAFY"
+        android:gravity="center"
+        android:background="@drawable/edge"
+        />
+
 
 </FrameLayout>
