@@ -86,12 +86,32 @@
             android:id="@+id/shortInfo"
             android:layout_marginTop="20dp"
             android:layout_width="300dp"
-            android:layout_height="100dp"
+            android:layout_height="wrap_content"
             android:textSize="12sp"
             android:textAlignment="center"
             android:fontFamily="@font/cafe24surroundair">
-
         </TextView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            >
+            <Button
+                android:id="@+id/btn_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="30dp"
+                android:text="상세 진단"
+                android:fontFamily="@font/cafe24surroundair"></Button>
+            <Button
+                android:id="@+id/btn_record"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="기록하기"
+                android:fontFamily="@font/cafe24surroundair"></Button>
+        </LinearLayout>
 
     </LinearLayout>
 
