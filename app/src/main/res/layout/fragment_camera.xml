@@ -28,38 +28,71 @@
         android:gravity="center"
         android:layout_weight="1">
 
-        <TextView
-            android:id="@+id/tv_result"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:layout_marginBottom="10dp"
-            android:textSize="20dp"
-            android:text="Take photo to get the result"
-            android:textAlignment="center"
-            />
 
         <ImageView
             android:id="@+id/iv_result"
-
+            android:layout_marginTop="100dp"
             android:layout_width="300dp"
             android:layout_height="300dp"
             android:background="@drawable/takephoto" />
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginTop="600dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Button
-            android:id="@+id/btn_capture"
-            android:layout_width="wrap_content"
+<!--        android:orientation="horizontal"-->
+<!--        android:gravity="center"-->
+<!--        android:layout_marginTop="600dp"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text="Take Photo"></Button>
-        <Button
-            android:id="@+id/classify"
-            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+            <Button
+                android:id="@+id/btn_capture"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="30dp"
+                android:fontFamily="@font/cafe24surroundair"
+                android:text="촬영"></Button>
+            <Button
+                android:id="@+id/classify"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/cafe24surroundair"
+                android:text="진단"></Button>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="Classify"></Button>
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+            <TextView
+                android:id="@+id/tv_result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:text=""
+                android:textAlignment="center"
+                android:fontFamily="@font/cafe24surroundair"
+                ></TextView>
+            <TextView
+                android:id="@+id/tv_result2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text=" 촬영 후 진단 버튼을 눌러주세요"
+                android:fontFamily="@font/cafe24surroundair"></TextView>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/shortInfo"
+            android:layout_marginTop="20dp"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:textSize="12sp"
+            android:textAlignment="center"
+            android:fontFamily="@font/cafe24surroundair">
+
+        </TextView>
+
     </LinearLayout>
 
 

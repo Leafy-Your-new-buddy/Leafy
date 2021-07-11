@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
 import android.net.Uri;
@@ -78,6 +79,8 @@ public class CameraFragment extends Fragment implements View.OnClickListener {
     TextView tv_result;
     Button btn_classify;
     ImageView iv_result;
+    TextView tv_result2;
+    TextView shortInfo;
 
 
     // tedpermission 대신 추가
@@ -99,6 +102,8 @@ public class CameraFragment extends Fragment implements View.OnClickListener {
 
         tv_result = view.findViewById(R.id.tv_result);
         btn_classify = view.findViewById(R.id.classify);
+        tv_result2 = view.findViewById(R.id.tv_result2);
+        shortInfo = view.findViewById(R.id.shortInfo);
 
         context = container.getContext();
 
@@ -208,7 +213,28 @@ public class CameraFragment extends Fragment implements View.OnClickListener {
 
         for (Map.Entry<String, Float> entry : labeledProbability.entrySet()) {
             if (entry.getValue()==maxValueInMap) {
-                tv_result.setText(entry.getKey());
+                String result_txt = entry.getKey();
+                tv_result.setText(result_txt);
+                if(result_txt.equals("\"건강\"")){
+                    tv_result2.setText(" 한 상태입니다.");
+                    tv_result.setTextColor(Color.BLUE);
+                    shortInfo.setText("☺"+"\n"+"오늘의 상태를 기록해보세요!");
+                }
+                else if(result_txt.equals("\"화상\"")){
+                    tv_result2.setText(" 이 의심됩니다.");
+                    tv_result.setTextColor(Color.RED);
+                    shortInfo.setText("강한 햇빛에 의해 화상을 입었을 수 있어요 😢"+"\n"+"정확한 진단을 위해 상세 진단을 진행해보세요!");
+                }
+                else if(result_txt.equals("\"과습\"")){
+                    tv_result2.setText(" 이 의심됩니다.");
+                    tv_result.setTextColor(Color.RED);
+                    shortInfo.setText("주로 물을 너무 많이 줬을 때 나타나는 증상이에요 😢"+"\n"+"정확한 진단을 위해 상세 진단을 진행해보세요!");
+                }
+                else if(result_txt.equals("\"수분부족\"")){
+                    tv_result2.setText(" 이 의심됩니다.");
+                    tv_result.setTextColor(Color.RED);
+                    shortInfo.setText("주로 물이 부족할 때 나타나는 증상이에요 😢"+"\n"+"정확한 진단을 위해 상세 진단을 진행해보세요!");
+                }
             }
         }
     }

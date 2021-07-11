@@ -82,6 +82,7 @@ public class CameraActivity extends AppCompatActivity {
     TextView tv_result;
     Button btn_classify;
 
+
     // tedpermission 대신 추가
     private static final int MY_CAMERA_REQUEST_CODE = 100;
 
@@ -212,6 +213,8 @@ public class CameraActivity extends AppCompatActivity {
         for (Map.Entry<String, Float> entry : labeledProbability.entrySet()) {
             if (entry.getValue()==maxValueInMap) {
                 tv_result.setText(entry.getKey());
+
+
             }
         }
     }
