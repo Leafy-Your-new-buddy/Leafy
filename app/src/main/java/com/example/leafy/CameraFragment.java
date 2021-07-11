@@ -25,6 +25,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -83,6 +84,8 @@ public class CameraFragment extends Fragment implements View.OnClickListener {
     TextView tv_result2;
     TextView shortInfo;
     Button btn_detail;
+    Button btn_capture;
+    LinearLayout btns;
 
 
     // tedpermission 대신 추가
@@ -107,6 +110,10 @@ public class CameraFragment extends Fragment implements View.OnClickListener {
         tv_result2 = view.findViewById(R.id.tv_result2);
         shortInfo = view.findViewById(R.id.shortInfo);
         btn_detail = view.findViewById(R.id.btn_detail);
+        btn_capture = view.findViewById(R.id.btn_capture);
+        btn_classify.setVisibility(View.GONE);
+        btns = view.findViewById(R.id.detailrecordbtn);
+        btns.setVisibility(View.GONE);
 
         context = container.getContext();
 
@@ -122,10 +129,14 @@ public class CameraFragment extends Fragment implements View.OnClickListener {
             e.printStackTrace();
         }
 
-        view.findViewById(R.id.btn_capture).setOnClickListener(new View.OnClickListener() {
+        btn_capture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                btn_capture.setText("재촬영");
+                btn_classify.setVisibility(View.VISIBLE);
+                btns.setVisibility(View.VISIBLE);
+
                 if(intent.resolveActivity(getActivity().getPackageManager())!=null){
                     File photoFile = null;
                     try{
