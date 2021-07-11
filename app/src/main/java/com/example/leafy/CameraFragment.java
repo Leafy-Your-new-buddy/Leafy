@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Matrix;
+import android.graphics.drawable.BitmapDrawable;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
@@ -81,6 +82,7 @@ public class CameraFragment extends Fragment implements View.OnClickListener {
     ImageView iv_result;
     TextView tv_result2;
     TextView shortInfo;
+    Button btn_detail;
 
 
     // tedpermission 대신 추가
@@ -104,6 +106,7 @@ public class CameraFragment extends Fragment implements View.OnClickListener {
         btn_classify = view.findViewById(R.id.classify);
         tv_result2 = view.findViewById(R.id.tv_result2);
         shortInfo = view.findViewById(R.id.shortInfo);
+        btn_detail = view.findViewById(R.id.btn_detail);
 
         context = container.getContext();
 
@@ -162,6 +165,14 @@ public class CameraFragment extends Fragment implements View.OnClickListener {
 
                 tflite.run(inputImageBuffer.getBuffer(),outputProbabilityBuffer.getBuffer().rewind());
                 showresult();
+            }
+        });
+
+        btn_detail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), DiagnoseActivity.class);
+                startActivity(intent);
             }
         });
         return view;
@@ -316,4 +327,6 @@ public class CameraFragment extends Fragment implements View.OnClickListener {
 //
 //        }
     }
+
+
 }

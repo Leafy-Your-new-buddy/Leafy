@@ -7,9 +7,8 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -18,6 +17,7 @@
         android:roundIcon="@mipmap/leafy_icon_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Leafy">
+        <activity android:name=".DiagnoseActivity"></activity>
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,18 +26,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".CalendarActivity" >
-
-
-        </activity>
-
-        <activity android:name=".CameraActivity" >
-
-        </activity>
+        <activity android:name=".CalendarActivity"></activity>
+        <activity android:name=".CameraActivity"></activity>
         <activity
             android:name=".settingActivity"
             android:configChanges="orientation|screenSize" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
