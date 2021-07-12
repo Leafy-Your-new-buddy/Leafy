@@ -36,11 +36,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
@@ -64,6 +67,9 @@ public class settingActivity extends AppCompatActivity {
     private FirebaseAuth mFirebaseAuth; //파이어베이스 인증
     private DatabaseReference mDatabaseRef;  //실시간 데이터베이스
 
+    String uid;
+
+
     //public static String test="Ddd";
 
     final static int BT_REQUEST_ENABLE = 1;
@@ -71,18 +77,22 @@ public class settingActivity extends AppCompatActivity {
     final static int BT_CONNECTING_STATUS = 3;
     final static UUID BT_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
     public static String readMessage;  //이 스트링에 습도 값을 담는다.
-    int humid=0;
+    public int humid=0;
 
     FragmentManager manager;
     FrameLayout out;
     MainFragment frag;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
 
-
+        mDatabaseRef= FirebaseDatabase.getInstance().getReference("appname");
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser(); // 로그인한 유저의 정보 가져오기
+        uid = user != null ? user.getUid() : null; // 로그인한 유저의 고유 uid 가져오기
 
         //확인 누르면 메인으로 돌아감
         Button back = (Button) findViewById(R.id.backToMain);
@@ -169,7 +179,19 @@ public class settingActivity extends AppCompatActivity {
                         readMessage="39";
                     }catch(InterruptedException e){readMessage="39";}
 
-                    frag.setTextViewValue(readMessage);
+
+                    try{
+                        if(frag.getTextViewValue(readMessage)>6){
+                            auto_watering();
+                            Toast.makeText(getApplicationContext(), "물줬음", Toast.LENGTH_SHORT).show();
+                        }
+                    }catch(Exception e){
+
+                    }finally{
+                        frag.setTextViewValue(readMessage);
+                     //   Toast.makeText(getApplicationContext(), "에러 발생", Toast.LENGTH_SHORT).show();
+                    }
+
 
                 }
             }
@@ -177,7 +199,8 @@ public class settingActivity extends AppCompatActivity {
 
 
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser(); // 로그인한 유저의 정보 가져오기
+
+       // FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser(); // 로그인한 유저의 정보 가져오기
         String uid = user != null ? user.getUid() : null; // 로그인한 유저의 고유 uid 가져오기
         mDatabaseRef= FirebaseDatabase.getInstance().getReference("appname");
         TextView name=findViewById(R.id.settingName);
@@ -363,5 +386,35 @@ public class settingActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "소켓 해제 중 오류가 발생했습니다.", Toast.LENGTH_LONG).show();
             }
         }
+    }
+
+    //물준날 기록
+    public void auto_watering(){
+        long now = System.currentTimeMillis();
+        Date mDate = new Date(now);
+
+        SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        String getTime = simpleDate.format(mDate);
+
+
+
+        mDatabaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                UserAccount name =  snapshot.child("UserAccount").child(uid).getValue(UserAccount.class);
+                name.addwaterDate(getTime);
+                mDatabaseRef.child("UserAccount").child(uid).setValue(name);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        Toast.makeText(getApplicationContext(), "물준날 기록", Toast.LENGTH_SHORT).show();
+
+
     }
 }
