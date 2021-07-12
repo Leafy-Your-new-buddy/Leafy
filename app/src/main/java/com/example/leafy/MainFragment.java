@@ -76,6 +76,7 @@ public class MainFragment extends Fragment implements View.OnClickListener{
     ImageView mweatherIcon;
     RelativeLayout mCityFinder;
 
+
     LocationManager mLocationManager;
     LocationListener mLocationListner;
 
@@ -86,10 +87,15 @@ public class MainFragment extends Fragment implements View.OnClickListener{
 
     Button btn_test;
     static TextView text;
+ //   static TextView tv;
     TextView water_feedback;
-    String uid;
 
+    public String humid;
+    public String temp;
+
+    private String uid;
     private DatabaseReference mDatabaseRef;  //실시간 데이터베이스
+    private FirebaseUser user;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -117,15 +123,17 @@ public class MainFragment extends Fragment implements View.OnClickListener{
             water_feedback.setText("블루투스를 활성화해 주세요.");
         }
         else {
-            String humid= settingActivity.readMessage;
-            if(humid==null){
+
+            String strhumid= settingActivity.readMessage;
+            //int humid=Integer.parseInt(strhumid.substring(0,2));
+
+            if(strhumid==null){
               //  setTextViewValue("수분센서와의 연결을 확인해주세요.");
                 water_feedback.setText("수분센서와의 연결을 확인해주세요.");
             }
             else{
-                setTextViewValue(humid);
-                water_feedback.setText("(수분량에 따른 피드백)");
 
+                water_feedback.setText("(수분량에 따른 피드백)");
             }
 
         }
@@ -135,7 +143,7 @@ public class MainFragment extends Fragment implements View.OnClickListener{
         btn_test.setOnClickListener(this);
 
         mDatabaseRef= FirebaseDatabase.getInstance().getReference("appname");
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser(); // 로그인한 유저의 정보 가져오기
+        user = FirebaseAuth.getInstance().getCurrentUser(); // 로그인한 유저의 정보 가져오기
         uid = user != null ? user.getUid() : null; // 로그인한 유저의 고유 uid 가져오기
 
         //생성된 View 객체를 리턴
@@ -147,7 +155,25 @@ public class MainFragment extends Fragment implements View.OnClickListener{
 
 
     public static void setTextViewValue(String str){
-        text.setText(str); //전달 받은 문자열로 TextView의 글씨를 변경
+        String temp=text.getText().toString();
+        String humid=str.substring(0,2);
+        text.setText(humid);
+
+    }
+    public static int getTextViewValue(String str){
+
+
+        int res=0;
+        String currentHumid=str.substring(0,2);
+        String humidText= text.getText().toString();
+        try{
+            res=Integer.parseInt(currentHumid)-Integer.parseInt(humidText);
+        }catch(Exception e){
+            res=0;
+        }finally {
+            return res;
+        }
+
     }
 
 
@@ -198,6 +224,8 @@ public class MainFragment extends Fragment implements View.OnClickListener{
 
             }
         });
+
+        Toast.makeText(context, "물준날 기록", Toast.LENGTH_SHORT).show();
 
 
     }
@@ -315,7 +343,7 @@ public class MainFragment extends Fragment implements View.OnClickListener{
             @Override
             public void onSuccess(int statusCode, cz.msebera.android.httpclient.Header[] headers, JSONObject response) {
                 //super.onSuccess(statusCode, headers, response);
-                Toast.makeText(context,"위치정보를 받아왔습니다.",Toast.LENGTH_SHORT).show();
+             //   Toast.makeText(context,"위치정보를 받아왔습니다.",Toast.LENGTH_SHORT).show();
                 weatherData weatherD=weatherData.fromJson(response);
                 updateUI(weatherD);
             }
