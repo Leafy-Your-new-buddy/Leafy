@@ -52,6 +52,19 @@ public class UserAccount {
     public void setName(String name){
         this.name=name;
     }
+    public boolean checkwaterDate(String newDate){
+        String date;
+        if( waterDate.isEmpty() || waterDate.size()==1){
+            date= "2000-01-01 00:00:00";
+        }
+        else date= waterDate.get(waterDate.size()-1);
+
+        date=date.substring(0,10);
+        String tempDate=newDate.substring(0,10);
+        if(date.equals(tempDate)) return false;
+        else return true;
+
+    }
 
     public void addwaterDate(String date){
         waterDate.add(date);

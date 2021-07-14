@@ -181,7 +181,7 @@ public class settingActivity extends AppCompatActivity {
 
 
                     try{
-                        if(frag.getTextViewValue(readMessage)>6){
+                        if(frag.getTextViewValue(readMessage)>10){
                             auto_watering();
                             Toast.makeText(getApplicationContext(), "물줬음", Toast.LENGTH_SHORT).show();
                         }
@@ -393,6 +393,7 @@ public class settingActivity extends AppCompatActivity {
         long now = System.currentTimeMillis();
         Date mDate = new Date(now);
 
+        //이 형식은 바꾸면 파이어베이스 쪽이 이상해져서, 그대로 두고 substring으로 앞의 10문자만 가져오는 걸로.
         SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         String getTime = simpleDate.format(mDate);
 
@@ -403,8 +404,14 @@ public class settingActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 UserAccount name =  snapshot.child("UserAccount").child(uid).getValue(UserAccount.class);
-                name.addwaterDate(getTime);
-                mDatabaseRef.child("UserAccount").child(uid).setValue(name);
+                if(name.checkwaterDate(getTime)){
+                    name.addwaterDate(getTime);
+                    mDatabaseRef.child("UserAccount").child(uid).setValue(name);
+                    Toast.makeText(getApplicationContext(),"중복아님",Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(getApplicationContext(),"중복",Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
