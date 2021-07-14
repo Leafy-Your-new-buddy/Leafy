@@ -194,7 +194,7 @@ public class MainFragment extends Fragment implements View.OnClickListener{
                 //Intent intent = new Intent(getActivity(),CameraActivity.class);
                 //startActivity(intent);
                 watering();
-                Toast.makeText(getActivity(), "현재 날짜를 파이어베이스에 저장.", Toast.LENGTH_SHORT).show();
+            //    Toast.makeText(getActivity(), "현재 날짜를 파이어베이스에 저장.", Toast.LENGTH_SHORT).show();
                 break;
 
         }
@@ -214,9 +214,18 @@ public class MainFragment extends Fragment implements View.OnClickListener{
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
+
                 UserAccount name =  snapshot.child("UserAccount").child(uid).getValue(UserAccount.class);
-                name.addwaterDate(getTime);
-                mDatabaseRef.child("UserAccount").child(uid).setValue(name);
+                if(name.checkwaterDate(getTime)){
+                    name.addwaterDate(getTime);
+                    mDatabaseRef.child("UserAccount").child(uid).setValue(name);
+                    Toast.makeText(context,"중복아님",Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(context,"중복",Toast.LENGTH_SHORT).show();
+               }
+                //Toast.makeText(context,,Toast.LENGTH_SHORT).show();
+
             }
 
             @Override
@@ -225,7 +234,7 @@ public class MainFragment extends Fragment implements View.OnClickListener{
             }
         });
 
-        Toast.makeText(context, "물준날 기록", Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(context, "물준날 기록", Toast.LENGTH_SHORT).show();
 
 
     }
