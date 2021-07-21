@@ -38,10 +38,20 @@ import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class CalendarFragment extends Fragment implements CalendarAdapter.OnItemListener, View.OnClickListener{
 
@@ -54,6 +64,12 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
 
     View title_record; //오늘의 기록
     TextView contextEditText; //기록 적는 칸
+    String uid;
+
+
+
+    private FirebaseAuth mFirebaseAuth; //파이어베이스 인증
+    private DatabaseReference mDatabaseRef;  //실시간 데이터베이스
 
     public CalendarFragment() {
         // Required empty public constructor
@@ -62,6 +78,9 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mDatabaseRef= FirebaseDatabase.getInstance().getReference("appname");
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser(); // 로그인한 유저의 정보 가져오기
+        uid = user != null ? user.getUid() : null; // 로그인한 유저의 고유 uid 가져오기
 
     }
 
@@ -86,10 +105,11 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
         btn_store=view.findViewById(R.id.btn_store);
         btn_store.setOnClickListener(this);
 
+
         //로그인 및 회원가입 액티비티에서 이름을 받아옴
         /* --TODO: 로그인 기록에서 회원정보를 갖고와서 해당 회원에 기록 저장하기
         Intent intent = new Intent();
-        String name=intent.getStringExtra("userName");  */
+        String name=intent.getStringExtra("userName"); */
         Intent intent = new Intent();
         final String userID=intent.getStringExtra("userID");
 
@@ -98,7 +118,10 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+
+                Intent intent = new Intent(getActivity(), CalendarActivity.class);
                 if(contextEditText.getText() != null){
+                    startActivity(intent);
                     title_record.setVisibility(View.VISIBLE);
                     contextEditText.setVisibility(View.VISIBLE);
                 }
@@ -112,19 +135,23 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
         return view;
     }
 
+
+
     //기록내용 파일저장
+    //파이어베이스에 연결
     public void  checkDay(int cYear,int cMonth,int cDay,String userID){
         fname=""+userID+cYear+"-"+(cMonth+1)+""+"-"+cDay+".txt";//저장할 파일 이름설정
-        FileInputStream fis=null;//FileStream fis 변수
+        //FileInputStream fis=null;//FileStream fis 변수
+
 
         try{
-            fis= getActivity().openFileInput(fname);
+            /*fis= getActivity().openFileInput(fname);
 
             byte[] fileData=new byte[fis.available()];
             fis.read(fileData);
-            fis.close();
+            fis.close();*/
 
-            str=new String(fileData);
+            //str=new String(fileData);
 
             contextEditText.setVisibility(View.INVISIBLE);
             title_record.setVisibility(View.INVISIBLE);
@@ -138,26 +165,54 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
             btn_record.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    saveDiary(fname);
                     contextEditText.setVisibility(View.VISIBLE);
                     title_record.setVisibility(View.VISIBLE);
                     btn_record.setVisibility(View.INVISIBLE);
-                    btn_watering.setVisibility(View.VISIBLE);
-                    btn_store.setVisibility(View.INVISIBLE);
+                    btn_watering.setVisibility(View.INVISIBLE);
+                    btn_store.setVisibility(View.VISIBLE); //저장하기 버튼만 띄우기
 
                     contextEditText.setText(str);
+
+                    saveDiary(fname);
 
                 }
 
             });
+            //물주기버튼
             btn_watering.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     //contextEditText.setVisibility(View.VISIBLE);
                     //title_record.setVisibility(View.VISIBLE);
-                    btn_record.setVisibility(View.INVISIBLE);
+                    btn_record.setVisibility(View.VISIBLE);
                     btn_watering.setVisibility(View.VISIBLE);
                     btn_store.setVisibility(View.INVISIBLE);
-                    //달력 일자 파란색으로 색칠하기
+
+                    //TODO: 달력 일자 파란색으로 색칠하기
+
+                }
+            });
+            btn_store.setOnClickListener(new View.OnClickListener(){
+
+                @Override
+                public void onClick(View v) {
+                    contextEditText.setText(str);
+                    //달력 첫 화면으로 넘어가기
+                    btn_record.setVisibility(View.VISIBLE);
+                    btn_watering.setVisibility(View.VISIBLE);
+                    btn_store.setVisibility(View.INVISIBLE);
+                    contextEditText.setVisibility(View.VISIBLE);
+                    title_record.setVisibility(View.VISIBLE);
+                    contextEditText.setText(str);
+
+                    if(contextEditText.getText()==null){
+                        contextEditText.setVisibility(View.VISIBLE);
+                        btn_watering.setVisibility(View.VISIBLE);
+                        btn_record.setVisibility(View.VISIBLE);
+                        btn_store.setVisibility(View.INVISIBLE);
+                        title_record.setVisibility(View.VISIBLE);
+                    }
 
                 }
             });
@@ -172,7 +227,7 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
             e.printStackTrace();
         }
     }
-    @SuppressLint("WrongConstant")
+    /*@SuppressLint("WrongConstant")
     public void removeDiary(String readDay){
         FileOutputStream fos=null;
 
@@ -185,10 +240,36 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
         }catch (Exception e){
             e.printStackTrace();
         }
-    }
+    }*/
     @SuppressLint("WrongConstant")
     public void saveDiary(String readDay){
-        FileOutputStream fos=null;
+        long now = System.currentTimeMillis();
+        Date mDate = new Date(now);
+        SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        String getTime = simpleDate.format(mDate);
+
+        mDatabaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                UserAccount name = snapshot.child("UserAccount").child(uid).getValue(UserAccount.class);
+                if (readDay != null) {
+                    String content = contextEditText.getText().toString();
+                    //기록내용 firebase에 저장
+                    mDatabaseRef.child("UserAccount").child(uid).child("Diary").setValue(content);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+
+        /*FileOutputStream fos=null;
 
         try{
             fos=getActivity().openFileOutput(readDay,Context.MODE_NO_LOCALIZED_COLLATORS);
@@ -197,8 +278,8 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
             fos.close();
         }catch (Exception e){
             e.printStackTrace();
-        }
-    }
+        }*/
+
 
     @Override
     public void onClick(View v) {
@@ -214,6 +295,8 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
             //   Toast.makeText(this, message, Toast.LENGTH_LONG).show();
         }
     }
+
+
 }
     /*@RequiresApi(api = Build.VERSION_CODES.O)
     private void setMonthView()
