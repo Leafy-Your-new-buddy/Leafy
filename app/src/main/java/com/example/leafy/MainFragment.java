@@ -3,6 +3,10 @@ package com.example.leafy;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -16,6 +20,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import android.app.AlertDialog;
@@ -85,10 +90,11 @@ public class MainFragment extends Fragment implements View.OnClickListener{
 
     }
 
+    ImageButton go_chat;
     Button btn_test;
     static TextView text;
  //   static TextView tv;
-    TextView water_feedback;
+    public static TextView water_feedback;
 
     public String humid;
     public String temp;
@@ -109,6 +115,7 @@ public class MainFragment extends Fragment implements View.OnClickListener{
         //위에 만들어진 view객체 안에 있는 TextView를 찾아오기
         text= (TextView)view.findViewById(R.id.tvReceiveData_main);
         water_feedback= (TextView)view.findViewById(R.id.water_Feedback);
+        go_chat= (ImageButton) view.findViewById(R.id.chat_button);
 
 
         weatherState = (TextView)view.findViewById(R.id.weatherCondition);
@@ -133,7 +140,10 @@ public class MainFragment extends Fragment implements View.OnClickListener{
             }
             else{
 
-                water_feedback.setText("(수분량에 따른 피드백)");
+                /*
+                water_feedback.setText("(수분량에 따른 피드백).");
+
+                 */
             }
 
         }
@@ -141,6 +151,8 @@ public class MainFragment extends Fragment implements View.OnClickListener{
         //일단 이 버튼을 누르면 물줬다고 인식
         btn_test=view.findViewById(R.id.test_button);
         btn_test.setOnClickListener(this);
+        //채팅 버튼 누르면 채팅 액티비티로 이동
+        go_chat.setOnClickListener(this);
 
         mDatabaseRef= FirebaseDatabase.getInstance().getReference("appname");
         user = FirebaseAuth.getInstance().getCurrentUser(); // 로그인한 유저의 정보 가져오기
@@ -158,6 +170,14 @@ public class MainFragment extends Fragment implements View.OnClickListener{
         String temp=text.getText().toString();
         String humid=str.substring(0,2);
         text.setText(humid);
+
+
+
+        int h=Integer.parseInt(humid);
+        if(h<=40) water_feedback.setText("흙이 말랐습니다.\n물을 준 지 한달이 넘었다면 물을 주세요!");
+        else if(h>40&&h<55) water_feedback.setText("흙에 적당한 수분이 있습니다. \n아직은 물을 주지 않아도 괜찮아요!");
+        else if(h>=55) water_feedback.setText("흙에 수분이 많습니다.\n배부르네요!");
+        else water_feedback.setText("센서의 측정값에 오류가 있습니다.");
 
     }
     public static int getTextViewValue(String str){
@@ -195,6 +215,10 @@ public class MainFragment extends Fragment implements View.OnClickListener{
                 //startActivity(intent);
                 watering();
             //    Toast.makeText(getActivity(), "현재 날짜를 파이어베이스에 저장.", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.chat_button:
+                Intent intent = new Intent(getActivity(),chatActivity.class);
+                startActivity(intent);
                 break;
 
         }
@@ -374,6 +398,10 @@ public class MainFragment extends Fragment implements View.OnClickListener{
         weatherState.setText(weather.getmWeatherType());
         int resourceID=getResources().getIdentifier(weather.getMicon(),"drawable",getActivity().getPackageName());
         mweatherIcon.setImageResource(resourceID);
+
+
+
+
 
 
     }
