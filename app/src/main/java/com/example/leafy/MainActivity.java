@@ -40,6 +40,7 @@ import com.loopj.android.http.RequestParams;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
@@ -93,6 +94,9 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()){
                 case R.id.calendar:
                     //TODO: calendar activity로 연결시키기
+                    Intent intent = new Intent(MainActivity.this, CalendarActivity.class);
+                    startActivity(intent);
+                    finish(); break;
                     //selected_fragment=new CalendarFragment();
                     //break;
                 case R.id.home:
