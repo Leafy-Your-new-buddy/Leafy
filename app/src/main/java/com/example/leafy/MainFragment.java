@@ -154,6 +154,7 @@ public class MainFragment extends Fragment implements View.OnClickListener{
         //채팅 버튼 누르면 채팅 액티비티로 이동
         go_chat.setOnClickListener(this);
 
+
         mDatabaseRef= FirebaseDatabase.getInstance().getReference("appname");
         user = FirebaseAuth.getInstance().getCurrentUser(); // 로그인한 유저의 정보 가져오기
         uid = user != null ? user.getUid() : null; // 로그인한 유저의 고유 uid 가져오기
