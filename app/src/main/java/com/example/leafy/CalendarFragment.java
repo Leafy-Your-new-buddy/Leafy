@@ -76,6 +76,7 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
         monthYearText.setText(monthYearFromDate(CalendarUtils.selectedDate));
         ArrayList<LocalDate> daysInMonth = daysInMonthArray(CalendarUtils.selectedDate);
 
+
         CalendarAdapter calendarAdapter = new CalendarAdapter(daysInMonth, this);
         if(calendarRecyclerView==null){
             Toast.makeText(context,"null",Toast.LENGTH_SHORT).show();
@@ -135,7 +136,12 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
     {
         if(date != null)
         {
-            CalendarUtils.selectedDate = date;
+            CalendarUtils.selectedDate = date; //yyyy-MM-dd 형식
+
+            String testdate = "2021-07-10";
+            if(testdate.equals(date.toString())) {
+                Toast.makeText(context,"기록 정보는 팝업으로(토스트 말고)",Toast.LENGTH_SHORT).show();
+            }
             setMonthView();
         }
     }
