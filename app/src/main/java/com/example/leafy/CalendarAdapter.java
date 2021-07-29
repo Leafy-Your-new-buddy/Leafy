@@ -1,5 +1,6 @@
 package com.example.leafy;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Build;
 import android.view.LayoutInflater;
@@ -21,13 +22,12 @@ import com.google.firebase.database.ValueEventListener;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import static com.example.leafy.R.color.water;
+
 class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder>
 {
     private final ArrayList<LocalDate> days;
     private final OnItemListener onItemListener;
-
-    public LocalDate test;
-
 
 
     @Override
@@ -58,17 +58,7 @@ class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder>
             layoutParams.height = (int) parent.getHeight();
         CalendarViewHolder holder=new CalendarViewHolder(view, onItemListener, days);
 
-        //holder.dayOfMonth.setText(String.valueOf(days.get(holder.getAdapterPosition()).getDayOfMonth()));
-        view.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                final int position = holder.getAdapterPosition();
-
-                LocalDate date=days.get(position);
-                //holder.parentView.setBackgroundResource(R.drawable.edge_cal);
-            }
-        });
         return holder;
     }
 
@@ -76,27 +66,32 @@ class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder>
     @Override
     public void onBindViewHolder(@NonNull CalendarViewHolder holder, int position)
     {
-        //인자로 받은 포지션으로부터 클릭한 날짜가 언제인지..
+
         final LocalDate date = days.get(position);
-        test=days.get(position);
+
         if(date == null)
             holder.dayOfMonth.setText("");
         else
         {
             holder.dayOfMonth.setText(String.valueOf(date.getDayOfMonth()));
             if(date.equals(CalendarUtils.selectedDate)){
-                //선택한 날짜에 테두리-깜빡이는 현상 때문에 주석처리
+
                 holder.parentView.setBackgroundResource(R.drawable.edge_cal); //선택 날짜 테두리 둘러지게..
             }
+            else{ //선택날짜 아닌애들은 테두리 지우기
+                holder.parentView.setBackgroundResource(0);
+            }
 
+            showWaterDate(holder,date); //물준날 체크
 
-            showWaterDate(holder,date);
+            //기록한 날 체크 테스트
+            String testdate = "2021-07-10";
+            if(testdate.equals(date.toString())){
+                holder.calText1.setBackgroundColor(Color.parseColor("#FAECC5"));
+                holder.calText1.setText("기록한 날");
 
+            }
 
-
-
-
-            //기록한날 테스트
 
         }
 
@@ -114,6 +109,7 @@ class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder>
 
 
         mDatabaseRef.addValueEventListener(new ValueEventListener() {
+
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
@@ -125,7 +121,7 @@ class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder>
 
                     if(water.equals(date.toString())){
 
-                            holder.calText1.setBackgroundColor(Color.YELLOW);
+                            holder.calText1.setBackgroundColor(Color.parseColor("#D4F4FA"));
                             holder.calText1.setText(" 물 준 날 ");
 
 
