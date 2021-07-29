@@ -1,2 +1,3 @@
-package com.example.leafy;public class WeekViewActivity {
+package com.example.leafy;
+public class WeekViewActivity {
 }
