@@ -73,4 +73,20 @@ public class UserAccount {
         waterDate=new ArrayList();
         waterDate.add("first");
     }
+    public String getwaterDate(int idx){
+        if(waterDate.get(idx).equals("first")){
+            return "0000-00-00 00";
+        }
+        else{
+            String date=waterDate.get(idx).substring(0,10);
+            return date;
+        }
+
+    }
+    public int getwaterDateSize(){
+        return waterDate.size();
+    }
+    public List<String> getWaterDateList(){
+        return this.waterDate;
+    }
 }
