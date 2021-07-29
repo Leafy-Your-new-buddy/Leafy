@@ -1,5 +1,6 @@
 package com.example.leafy;
 
+import android.graphics.Color;
 import android.view.View;
 import android.widget.TextView;
 
@@ -15,19 +16,25 @@ public class CalendarViewHolder extends RecyclerView.ViewHolder implements View.
     private final CalendarAdapter.OnItemListener onItemListener;
     private final ArrayList<LocalDate> days;
     public final View parentView;
+    public final TextView calText1;
+    public final TextView calText2;
     public CalendarViewHolder(@NonNull View itemView, CalendarAdapter.OnItemListener onItemListener,ArrayList<LocalDate> days)
     {
         super(itemView);
         parentView = itemView.findViewById(R.id.parentView);
         dayOfMonth = itemView.findViewById(R.id.cellDayText);
+        calText1=itemView.findViewById(R.id.calText1);
+        calText2=itemView.findViewById(R.id.calText2);
         this.onItemListener = onItemListener;
         itemView.setOnClickListener(this);
         this.days=days;
+
     }
 
     @Override
     public void onClick(View view)
     {
         onItemListener.onItemClick(getAdapterPosition(), days.get(getAdapterPosition()));
+
     }
 }

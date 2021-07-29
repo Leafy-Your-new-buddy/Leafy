@@ -1,16 +1,22 @@
 package com.example.leafy;
 
+import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder>
@@ -21,8 +27,8 @@ class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder>
     {
         this.days = days;
         this.onItemListener = onItemListener;
-    }
 
+    }
 
     @NonNull
     @Override
@@ -43,15 +49,29 @@ class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder>
     @Override
     public void onBindViewHolder(@NonNull CalendarViewHolder holder, int position)
     {
+        //인자로 받은 포지션으로부터 클릭한 날짜가 언제인지..
         final LocalDate date = days.get(position);
+        String string = "2021-07-10";
+        LocalDate testdate = LocalDate.parse(string, DateTimeFormatter.ISO_DATE);
         if(date == null)
             holder.dayOfMonth.setText("");
         else
         {
             holder.dayOfMonth.setText(String.valueOf(date.getDayOfMonth()));
-            if(date.equals(CalendarUtils.selectedDate))
-                holder.parentView.setBackgroundColor(Color.LTGRAY);
+            if(date.equals(CalendarUtils.selectedDate)){
+                //holder.parentView.setBackgroundColor(Color.LTGRAY);
+                holder.parentView.setBackgroundResource(R.drawable.edge_cal);
+            }
+            if(date.equals(testdate)){
+                holder.calText1.setBackgroundColor(Color.YELLOW);
+                holder.calText1.setText(" 물 준 날 ");
+                holder.calText2.setBackgroundColor(Color.LTGRAY);
+                holder.calText2.setText("기록한 날");
+
+            }
+
         }
+
     }
 
     @Override
@@ -63,5 +83,6 @@ class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder>
     public interface  OnItemListener
     {
         void onItemClick(int position, LocalDate date);
+
     }
 }
