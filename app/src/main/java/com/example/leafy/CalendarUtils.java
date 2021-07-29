@@ -14,6 +14,8 @@ public class CalendarUtils
 {
     public static LocalDate selectedDate;
 
+    public static boolean firstLoad;
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static String formattedDate(LocalDate date)
     {

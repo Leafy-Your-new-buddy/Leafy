@@ -10,6 +10,7 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SimpleItemAnimator;
 
 import android.util.Property;
 import android.view.LayoutInflater;
@@ -25,6 +26,7 @@ import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 
 public class CalendarFragment extends Fragment implements CalendarAdapter.OnItemListener, View.OnClickListener{
@@ -41,7 +43,7 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
     }
 
     Button btn_calendar;
-
+    View calCell;
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,9 +55,10 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
 
 
         calendarRecyclerView = view.findViewById(R.id.calendarRecyclerView);
-
+        calCell=view.findViewById(R.id.parentView);
         monthYearText = view.findViewById(R.id.monthYearTV);
         CalendarUtils.selectedDate = LocalDate.now();
+        CalendarUtils.firstLoad=true;
 
         context = container.getContext();
 
@@ -67,6 +70,8 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
         next_btn.setOnClickListener(this);
 
 
+
+
         return view;
     }
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -76,7 +81,6 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
         monthYearText.setText(monthYearFromDate(CalendarUtils.selectedDate));
         ArrayList<LocalDate> daysInMonth = daysInMonthArray(CalendarUtils.selectedDate);
 
-
         CalendarAdapter calendarAdapter = new CalendarAdapter(daysInMonth, this);
         if(calendarRecyclerView==null){
             Toast.makeText(context,"null",Toast.LENGTH_SHORT).show();
@@ -84,9 +88,20 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
 
         //수정
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(context, 7);
+        calendarAdapter.setHasStableIds(true); //깜빡임 없도록
+
+        RecyclerView.ItemAnimator animator = calendarRecyclerView.getItemAnimator();
+        if (animator instanceof SimpleItemAnimator) {
+            ((SimpleItemAnimator) animator).setSupportsChangeAnimations(false);
+        }
 
         calendarRecyclerView.setLayoutManager(layoutManager);
         calendarRecyclerView.setAdapter(calendarAdapter);
+
+
+
+
+
     }
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static ArrayList<LocalDate> daysInMonthArray(LocalDate date)
@@ -137,12 +152,15 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
         if(date != null)
         {
             CalendarUtils.selectedDate = date; //yyyy-MM-dd 형식
-
+            CalendarUtils.firstLoad=false;
             String testdate = "2021-07-10";
+
             if(testdate.equals(date.toString())) {
-                Toast.makeText(context,"기록 정보는 팝업으로(토스트 말고)",Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(context,"기록 정보는 팝업으로(토스트 말고)",Toast.LENGTH_SHORT).show();
             }
-            setMonthView();
+
+           // setMonthView();
+
         }
     }
 
