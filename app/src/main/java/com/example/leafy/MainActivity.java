@@ -93,12 +93,8 @@ public class MainActivity extends AppCompatActivity {
             Fragment selected_fragment=null;
             switch (item.getItemId()){
                 case R.id.calendar:
-                    //TODO: calendar activity로 연결시키기
-                    Intent intent = new Intent(MainActivity.this, CalendarActivity.class);
-                    startActivity(intent);
-                    finish(); break;
-                    //selected_fragment=new CalendarFragment();
-                    //break;
+                    selected_fragment=new CalendarFragment();
+                    break;
                 case R.id.home:
                     selected_fragment=new MainFragment();
                     break;

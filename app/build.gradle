@@ -55,13 +55,12 @@ dependencies {
 
     implementation 'de.hdodenhof:circleimageview:3.1.0' //원형 이미지뷰
 
-    //달력변경된 부분
-    implementation 'org.naishadhparmar.zcustomcalendar:zcustomcalendar:0.9.1' //1.0.1
 
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
 
 
 
