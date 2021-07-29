@@ -26,6 +26,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegisterActivity" />
+        <activity android:name=".chatActivity" />
         <activity android:name=".CameraActivity"></activity>
         <activity
             android:name=".settingActivity"
