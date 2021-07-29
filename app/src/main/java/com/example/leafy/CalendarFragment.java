@@ -74,6 +74,8 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
 
         return view;
     }
+    CalendarAdapter calendarAdapter;
+    RecyclerView.LayoutManager layoutManager;
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void setMonthView()
     {
@@ -81,25 +83,22 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
         monthYearText.setText(monthYearFromDate(CalendarUtils.selectedDate));
         ArrayList<LocalDate> daysInMonth = daysInMonthArray(CalendarUtils.selectedDate);
 
-        CalendarAdapter calendarAdapter = new CalendarAdapter(daysInMonth, this);
+        calendarAdapter = new CalendarAdapter(daysInMonth, this);
         if(calendarRecyclerView==null){
             Toast.makeText(context,"null",Toast.LENGTH_SHORT).show();
         }
 
         //수정
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(context, 7);
-        calendarAdapter.setHasStableIds(true); //깜빡임 없도록
+        layoutManager = new GridLayoutManager(context, 7);
+
 
         RecyclerView.ItemAnimator animator = calendarRecyclerView.getItemAnimator();
         if (animator instanceof SimpleItemAnimator) {
             ((SimpleItemAnimator) animator).setSupportsChangeAnimations(false);
         }
-
+        calendarAdapter.setHasStableIds(true); //깜빡임 없도록
         calendarRecyclerView.setLayoutManager(layoutManager);
         calendarRecyclerView.setAdapter(calendarAdapter);
-
-
-
 
 
     }
@@ -156,10 +155,11 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
             String testdate = "2021-07-10";
 
             if(testdate.equals(date.toString())) {
-              //  Toast.makeText(context,"기록 정보는 팝업으로(토스트 말고)",Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,"기록 정보는 다이얼로그나 액티비티로(토스트는 임시)",Toast.LENGTH_SHORT).show();
             }
 
-           // setMonthView();
+            //이걸 쓰면 물준날은 갱신 x 클릭한 날짜 테두리만 갱신할 수 있다. (깜빡임 해결)
+            calendarAdapter.notifyDataSetChanged();
 
         }
     }
