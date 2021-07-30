@@ -115,13 +115,13 @@ public class MainFragment extends Fragment implements View.OnClickListener{
         //위에 만들어진 view객체 안에 있는 TextView를 찾아오기
         text= (TextView)view.findViewById(R.id.tvReceiveData_main);
         water_feedback= (TextView)view.findViewById(R.id.water_Feedback);
-        go_chat= (ImageButton) view.findViewById(R.id.chat_button);
+        go_chat= (ImageButton) view.findViewById(R.id.btn_chat);
 
 
         weatherState = (TextView)view.findViewById(R.id.weatherCondition);
         Temperature = (TextView)view.findViewById(R.id.temperature);
         mweatherIcon = (ImageView) view.findViewById(R.id.weatherIcon);
-        NameofCity = (TextView)view.findViewById(R.id.cityName);
+        //NameofCity = (TextView)view.findViewById(R.id.cityName);
 
         context = container.getContext();   // toast 사용에 필요
 
@@ -217,7 +217,7 @@ public class MainFragment extends Fragment implements View.OnClickListener{
                 watering();
             //    Toast.makeText(getActivity(), "현재 날짜를 파이어베이스에 저장.", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.chat_button:
+            case R.id.btn_chat:
                 Intent intent = new Intent(getActivity(),chatActivity.class);
                 startActivity(intent);
                 break;
@@ -395,7 +395,7 @@ public class MainFragment extends Fragment implements View.OnClickListener{
 
 
         Temperature.setText(weather.getmTemperature());
-        NameofCity.setText(weather.getMcity());
+        //NameofCity.setText(weather.getMcity());
         weatherState.setText(weather.getmWeatherType());
         int resourceID=getResources().getIdentifier(weather.getMicon(),"drawable",getActivity().getPackageName());
         mweatherIcon.setImageResource(resourceID);
