@@ -6,6 +6,7 @@ import android.os.Build;
 import android.os.Bundle;
 
 
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -24,7 +25,9 @@ import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
+
 
 
 public class CalendarFragment extends Fragment implements CalendarAdapter.OnItemListener, View.OnClickListener{
@@ -41,6 +44,29 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
     }
 
     Button btn_calendar;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //캘린더 day 해시맵 초기화
+        HashMap<Object, Property> descHashMap = new HashMap<>();
+        CalendarProperty defaultProperty = new CalendarProperty();
+
+        //띄워질 celltype선택
+        //defaultProperty.layoutResource =
+
+
+
+        /*
+        defaultProperty.layoutResource = R.layout.default_view;
+        //초기화 & 변수 선언
+        defaultProperty.dateTextViewResource = R.id.text_view;
+        //put object and property
+        descHashMap.put("default", defaultProperty);*/
+
+
+
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
