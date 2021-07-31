@@ -110,8 +110,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginBottom="10dp"
                     android:text="--weather--"
                     android:textSize="15dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -129,38 +128,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintHorizontal_bias="0.7"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/icons"
-                android:layout_below="@id/weather_Feedback_box"
-                android:layout_centerHorizontal="true"
-                android:layout_width="350dp"
-                android:layout_height="60dp">
 
-                <ImageButton
-                    android:id="@+id/btn_tmpnews"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_margin="10dp"
-                    android:background="@null"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_news"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/btn_tmpsetting"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageButton
-                    android:id="@+id/btn_tmpsetting"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_margin="10dp"
-                    android:background="@null"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_settings"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
             <ImageView
                 android:layout_below="@+id/weather_Feedback_box"
                 android:layout_centerHorizontal="true"
@@ -208,18 +176,19 @@
                 android:layout_height="40dp"
                 android:background="@null"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_chat"
+                android:src="@drawable/ic_chat2"
                 android:layout_margin="10dp"
                 app:layout_constraintStart_toStartOf="@+id/leafy_condition"
                 app:layout_constraintTop_toTopOf="@+id/leafy_condition" />
 
             <ImageButton
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_margin="10dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="12dp"
                 android:background="@null"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_news"
+                android:src="@drawable/ic_setting"
                 app:layout_constraintStart_toEndOf="@+id/btn_chat"
                 app:layout_constraintTop_toTopOf="@+id/leafy_condition" />
 
