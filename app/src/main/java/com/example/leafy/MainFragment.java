@@ -94,6 +94,7 @@ public class MainFragment extends Fragment implements View.OnClickListener{
     Button btn_test;
     static TextView text;
  //   static TextView tv;
+    TextView tv_weathertip;
     public static TextView water_feedback;
 
     public String humid;
@@ -116,7 +117,7 @@ public class MainFragment extends Fragment implements View.OnClickListener{
         text= (TextView)view.findViewById(R.id.tvReceiveData_main);
         water_feedback= (TextView)view.findViewById(R.id.water_Feedback);
         go_chat= (ImageButton) view.findViewById(R.id.btn_chat);
-
+        tv_weathertip = (TextView) view.findViewById(R.id.weather_tip);
 
         weatherState = (TextView)view.findViewById(R.id.weatherCondition);
         Temperature = (TextView)view.findViewById(R.id.temperature);
@@ -400,10 +401,35 @@ public class MainFragment extends Fragment implements View.OnClickListener{
         int resourceID=getResources().getIdentifier(weather.getMicon(),"drawable",getActivity().getPackageName());
         mweatherIcon.setImageResource(resourceID);
 
+        // weather tip
+        int tmp_t = weather.getTempforTip();
+        String tmp_w = weather.getMicon();
+        String tip="";
+        if(tmp_t>35){
+            tip="날씨가 너무 더워요 🥵\n햇빛과 습도 조절을 주의하세요!";
+        }
+        else if(tmp_t>10){
+            if(tmp_w=="sunny"){
+                tip="날씨가 좋아요 😍 \n오늘을 광합성 실컷 하는 날! 화상만 조심하기!";
+            }
+            else if(tmp_w=="thunderstorm1"||tmp_w=="lightrain"||tmp_w=="shower"||tmp_w=="thunderstorm2"){
+                tip="비를 많이 맞으면 무름병에 걸릴 수 있어요! \n실내에 들여두는 게 좋아요. 😉";
+            }
+            else if(tmp_w=="snow1"||tmp_w=="snow2"){
+                tip="눈을 맞으면 냉해나 무름병이 생길 수 있어요! \n실내에 들여두는 게 좋아요. 😉";
+            }
+            else if(tmp_w=="cloudy"||tmp_w=="fog"||tmp_w=="overcast"){
+                tip="오늘은 날이 흐리네요 😧 \n최대한 햇빛을 볼 수 있게 해주세요!";
+            }
+            else{
+                tip=tmp_w+" 에 대한 정보를 불러올 수 없습니다. \n😰";
+            }
+        }
+        else{
+            tip="날씨가 추워요! \n실내에 두고, 냉해를 주의하세요. 🥶";
+        }
 
-
-
-
+        tv_weathertip.setText(tip);
 
     }
 
