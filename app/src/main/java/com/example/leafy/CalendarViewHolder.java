@@ -33,7 +33,7 @@ public class CalendarViewHolder extends RecyclerView.ViewHolder implements View.
         this.onItemListener = onItemListener;
         itemView.setOnClickListener(this);
         this.days=days;
-        //clearLine();
+
 
 
 

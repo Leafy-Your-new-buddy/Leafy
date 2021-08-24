@@ -14,6 +14,8 @@ public class UserAccount {
 
     //List waterDate=new ArrayList();
     public List<String> waterDate;
+    public List<Diary> diaryList;
+
 
 
     //파이어베이스 특징-빈 생성자를 만들어줘야 함
@@ -82,6 +84,16 @@ public class UserAccount {
             return date;
         }
 
+    }
+
+    public void addDiary(Diary d){
+
+        diaryList.add(d);
+    }
+    public void setDiaryList(){
+        diaryList=new ArrayList();
+        Diary d=new Diary("0000-00-00 00","오늘은 리피를 시작한 날이야.","000000000000000000000");
+        diaryList.add(d);
     }
     public int getwaterDateSize(){
         return waterDate.size();

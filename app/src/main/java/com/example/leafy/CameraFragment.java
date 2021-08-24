@@ -1,6 +1,7 @@
 package com.example.leafy;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -29,6 +30,20 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
 import org.tensorflow.lite.DataType;
 import org.tensorflow.lite.Interpreter;
 import org.tensorflow.lite.support.common.FileUtil;
@@ -42,6 +57,7 @@ import org.tensorflow.lite.support.image.ops.ResizeWithCropOrPadOp;
 import org.tensorflow.lite.support.label.TensorLabel;
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -87,6 +103,13 @@ public class CameraFragment extends Fragment implements View.OnClickListener {
     Button btn_capture;
     LinearLayout btns;
 
+    Button record;
+    private String uid;
+    private DatabaseReference mDatabaseRef;  //실시간 데이터베이스
+    private FirebaseUser user;
+    private StorageReference mStorageRef; //파이어베이스 스토리지
+    StorageReference mProfileRef;
+
 
     // tedpermission 대신 추가
     private static final int MY_CAMERA_REQUEST_CODE = 100;
@@ -96,6 +119,8 @@ public class CameraFragment extends Fragment implements View.OnClickListener {
     }
 
 //    Button btn_camera;
+
+    String getTime;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -111,9 +136,24 @@ public class CameraFragment extends Fragment implements View.OnClickListener {
         shortInfo = view.findViewById(R.id.shortInfo);
         btn_detail = view.findViewById(R.id.btn_detail);
         btn_capture = view.findViewById(R.id.btn_capture);
+        record=view.findViewById(R.id.btn_record);
         btn_classify.setVisibility(View.GONE);
         btns = view.findViewById(R.id.detailrecordbtn);
         btns.setVisibility(View.GONE);
+
+
+        long now = System.currentTimeMillis();
+        Date mDate = new Date(now);
+        SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        getTime = simpleDate.format(mDate);
+
+
+
+        mDatabaseRef= FirebaseDatabase.getInstance().getReference("appname");
+        user = FirebaseAuth.getInstance().getCurrentUser(); // 로그인한 유저의 정보 가져오기
+        uid = user != null ? user.getUid() : null; // 로그인한 유저의 고유 uid 가져오기
+        mStorageRef = FirebaseStorage.getInstance().getReference(); //스토리지
+        mProfileRef = mStorageRef.child("recodeImage").child(uid).child(getTime); //스토리지 저장
 
         context = container.getContext();
 
@@ -149,6 +189,7 @@ public class CameraFragment extends Fragment implements View.OnClickListener {
                         photoUri = FileProvider.getUriForFile(getActivity().getApplicationContext(), getActivity().getPackageName(),photoFile);
                         intent.putExtra(MediaStore.EXTRA_OUTPUT,photoUri);
                         startActivityForResult(intent, REQUEST_IMAGE_CAPTURE);
+                        //photoFile
                     }
                 }
             }
@@ -186,6 +227,19 @@ public class CameraFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent);
             }
         });
+
+        //기록 버튼 누름
+        record.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addRecord("기록 테스트(진단 내용으로 바뀔 예정)");
+                //Toast.makeText(context, "기록했습니다.", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+
+
         return view;
     }
 
@@ -237,6 +291,7 @@ public class CameraFragment extends Fragment implements View.OnClickListener {
             if (entry.getValue()==maxValueInMap) {
                 String result_txt = entry.getKey();
                 tv_result.setText(result_txt);
+
                 if(result_txt.equals("\"건강\"")){
                     tv_result2.setText(" 한 상태입니다.");
                     tv_result.setTextColor(Color.BLUE);
@@ -272,10 +327,12 @@ public class CameraFragment extends Fragment implements View.OnClickListener {
         return image;
     }
 
+    // 카메라로 촬영한 사진을 가져와 이미지뷰에 띄워줌
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == getActivity().RESULT_OK) {
+
             bitmap = BitmapFactory.decodeFile(imageFilePath);
             ExifInterface exif = null;
             try {
@@ -295,6 +352,12 @@ public class CameraFragment extends Fragment implements View.OnClickListener {
             }
             iv_result = getView().findViewById(R.id.iv_result);
             iv_result.setImageBitmap(rotate(bitmap, exifDegree));
+
+
+
+
+
+
         }
     }
 
@@ -338,6 +401,85 @@ public class CameraFragment extends Fragment implements View.OnClickListener {
 //
 //        }
     }
+    //바이너리 바이트 배열을 스트링으로
+    public static String byteArrayToBinaryString(byte[] b) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < b.length; ++i) {
+            sb.append(byteToBinaryString(b[i]));
+        } return sb.toString();
+
+    }
+    // 바이너리 바이트를 스트링으로
+    public static String byteToBinaryString(byte n) {
+        StringBuilder sb = new StringBuilder("00000000");
+        for (int bit = 0; bit < 8; bit++) {
+            if (((n >> bit) & 1) > 0) {
+                sb.setCharAt(7 - bit, '1');
+            }
+        } return sb.toString();
+    }
 
 
-}
+
+    //기록 추가 함수
+    public void addRecord(String content){
+        long now = System.currentTimeMillis();
+        Date mDate = new Date(now);
+        SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        getTime = simpleDate.format(mDate);
+
+
+        //파이어베이스 스토리지에 업로드
+        Toast.makeText(context, "기록 중입니다. 잠시만 기다려주세요", Toast.LENGTH_SHORT).show();
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] datas = baos.toByteArray();
+        mProfileRef = mStorageRef.child("recodeImage").child(uid).child(getTime); //스토리지 저장
+        UploadTask uploadTask = mProfileRef.putBytes(datas);
+        Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+            @Override
+            public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                if (!task.isSuccessful()) {
+                    throw task.getException();
+                }
+
+                // Continue with the task to get the download URL
+                return mProfileRef.getDownloadUrl();
+            }
+        }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+            @Override
+            public void onComplete(@NonNull Task<Uri> task) {
+                if (task.isSuccessful()) {
+                    String mDownloadImageUri = String.valueOf(task.getResult());
+
+                    Diary newD=new Diary(getTime,"진단 내용",mDownloadImageUri);
+                    //mDatabaseRef.child(uid).setValue(newD);
+                    /*
+                    db에 다이어리 객체 저장하는 부분
+
+                    //값 데이터베이스에서 넣어줌
+                    profile = new Profile(mEmail, mNickName, mSex, mAge, mDownloadImageUri + "");
+                    //사용자토큰을 루트로 사용자 정보 저장
+                    mProfieDatabaseReference.child(mUid).setValue(profile);
+                    //닉네임리스트에 닉네임저장
+                    mNickNameDatabaseReference.child(profile.getNickName()).setValue(mEmail);
+                    
+                     */
+                    Toast.makeText(context, "기록 성공!.", Toast.LENGTH_SHORT).show();
+                 
+                } else {
+                    Toast.makeText(context, "이미지 업로드에 실패했습니다.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
+    }
+
+
+
+
+
+    }
+
+

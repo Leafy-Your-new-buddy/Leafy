@@ -138,6 +138,7 @@ public class MainFragment extends Fragment implements View.OnClickListener{
             if(strhumid==null){
               //  setTextViewValue("수분센서와의 연결을 확인해주세요.");
                 water_feedback.setText("수분센서와의 연결을 확인해주세요.");
+              //  water_feedback.setText("흙에 적당한 수분이 있습니다. \n아직은 물을 주지 않아도 괜찮아요!");
             }
             else{
 

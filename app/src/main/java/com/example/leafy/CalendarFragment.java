@@ -6,6 +6,7 @@ import android.os.Build;
 import android.os.Bundle;
 
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -21,6 +22,10 @@ import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
+
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
@@ -34,8 +39,8 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
 
     TextView monthYearText;
     RecyclerView calendarRecyclerView;
-
     Context context;
+
 
     public CalendarFragment() {
         // Required empty public constructor
@@ -144,6 +149,8 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
         setMonthView();
     }
 
+
+    LocalDate tempDate;
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onItemClick(int position, LocalDate date)
@@ -154,11 +161,9 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
             CalendarUtils.firstLoad=false;
             String testdate = "2021-07-10";
 
-            if(testdate.equals(date.toString())) {
-                Toast.makeText(context,"기록 정보는 다이얼로그나 액티비티로(토스트는 임시)",Toast.LENGTH_SHORT).show();
-            }
 
-            //이걸 쓰면 물준날은 갱신 x 클릭한 날짜 테두리만 갱신할 수 있다. (깜빡임 해결)
+
+            //이걸 쓰면 물준날은 갱신 x 클릭한 날짜 테두리만 갱신할 수 있다. (깜빡임 해결!!)
             calendarAdapter.notifyDataSetChanged();
 
         }

@@ -70,6 +70,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 account.setPassword(strPwd);
                                 account.setName(strName);
                                 account.setwaterDate();
+                                account.setDiaryList();
 
                                 //데이터베이스에 삽입(insert)
                                 mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).setValue(account);
