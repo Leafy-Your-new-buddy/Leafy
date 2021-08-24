@@ -91,6 +91,7 @@ public class MainFragment extends Fragment implements View.OnClickListener{
     }
 
     ImageButton go_chat;
+    ImageButton go_set;
     Button btn_test;
     static TextView text;
  //   static TextView tv;
@@ -124,6 +125,8 @@ public class MainFragment extends Fragment implements View.OnClickListener{
         mweatherIcon = (ImageView) view.findViewById(R.id.weatherIcon);
         //NameofCity = (TextView)view.findViewById(R.id.cityName);
 
+        go_set=(ImageButton) view.findViewById(R.id.setIcon);
+
         context = container.getContext();   // toast 사용에 필요
 
         if(!BluetoothAdapter.getDefaultAdapter().isEnabled()){
@@ -155,6 +158,7 @@ public class MainFragment extends Fragment implements View.OnClickListener{
         btn_test.setOnClickListener(this);
         //채팅 버튼 누르면 채팅 액티비티로 이동
         go_chat.setOnClickListener(this);
+        go_set.setOnClickListener(this);
 
 
         mDatabaseRef= FirebaseDatabase.getInstance().getReference("appname");
@@ -223,6 +227,11 @@ public class MainFragment extends Fragment implements View.OnClickListener{
                 Intent intent = new Intent(getActivity(),chatActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.setIcon:
+                Intent intent2 = new Intent(getActivity(),settingActivity.class);
+                startActivity(intent2);
+                break;
+
 
         }
 

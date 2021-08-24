@@ -33,6 +33,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import static android.app.Activity.RESULT_OK;
+
 
 public class CalendarFragment extends Fragment implements CalendarAdapter.OnItemListener, View.OnClickListener{
 
@@ -159,7 +161,16 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
         {
             CalendarUtils.selectedDate = date; //yyyy-MM-dd 형식
             CalendarUtils.firstLoad=false;
-            String testdate = "2021-07-10";
+            //더블클릭한경우
+            if(tempDate!=null){
+                if(tempDate.equals(date)){
+                    Toast.makeText(context,"더블클릭",Toast.LENGTH_SHORT).show();
+                    mOnPopupClick("꺄");
+
+
+                }
+            }
+            tempDate=CalendarUtils.selectedDate;
 
 
 
@@ -168,7 +179,26 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
 
         }
     }
+    //팝업 띄우는 함수
+    public void mOnPopupClick(String s){
+        //데이터 담아서 팝업(액티비티) 호출
 
+        Intent intent = new Intent(context, PopupActivity.class);
+        intent.putExtra("data",s);
+        //startActivity(intent);
+        startActivityForResult(intent, 1);
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+                //데이터 받기
+                String result = data.getStringExtra("result");
+                //txtResult.setText(result);
+            }
+        }
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override

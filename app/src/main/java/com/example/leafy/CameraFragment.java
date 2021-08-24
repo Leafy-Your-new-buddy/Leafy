@@ -453,19 +453,21 @@ public class CameraFragment extends Fragment implements View.OnClickListener {
                     String mDownloadImageUri = String.valueOf(task.getResult());
 
                     Diary newD=new Diary(getTime,"진단 내용",mDownloadImageUri);
-                    //mDatabaseRef.child(uid).setValue(newD);
-                    /*
-                    db에 다이어리 객체 저장하는 부분
+                    mDatabaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            UserAccount name =  snapshot.child("UserAccount").child(uid).getValue(UserAccount.class);
+                            name.addDiary(newD);
+                            mDatabaseRef.child("UserAccount").child(uid).setValue(name);
+                        }
 
-                    //값 데이터베이스에서 넣어줌
-                    profile = new Profile(mEmail, mNickName, mSex, mAge, mDownloadImageUri + "");
-                    //사용자토큰을 루트로 사용자 정보 저장
-                    mProfieDatabaseReference.child(mUid).setValue(profile);
-                    //닉네임리스트에 닉네임저장
-                    mNickNameDatabaseReference.child(profile.getNickName()).setValue(mEmail);
-                    
-                     */
-                    Toast.makeText(context, "기록 성공!.", Toast.LENGTH_SHORT).show();
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
+                    Toast.makeText(context, "기록 성공!", Toast.LENGTH_SHORT).show();
                  
                 } else {
                     Toast.makeText(context, "이미지 업로드에 실패했습니다.", Toast.LENGTH_SHORT).show();
