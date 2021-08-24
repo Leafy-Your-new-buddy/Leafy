@@ -17,7 +17,8 @@
         android:roundIcon="@mipmap/leafy_icon_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Leafy">
-        <activity android:name=".DiagnoseActivity"></activity>
+        <activity android:name=".PopupActivity" android:theme="@android:style/Theme.Dialog"></activity>
+        <activity android:name=".DiagnoseActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,7 +28,7 @@
         </activity>
         <activity android:name=".RegisterActivity" />
         <activity android:name=".chatActivity" />
-        <activity android:name=".CameraActivity"></activity>
+        <activity android:name=".CameraActivity" />
         <activity
             android:name=".settingActivity"
             android:configChanges="orientation|screenSize" />

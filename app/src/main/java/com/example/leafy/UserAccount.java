@@ -95,10 +95,21 @@ public class UserAccount {
         Diary d=new Diary("0000-00-00 00","오늘은 리피를 시작한 날이야.","000000000000000000000");
         diaryList.add(d);
     }
+
     public int getwaterDateSize(){
         return waterDate.size();
     }
     public List<String> getWaterDateList(){
         return this.waterDate;
     }
+
+    public int getDiarySize(){
+        return diaryList.size();
+    }
+    //i를 주면 그 인덱스의 기록한 날을 가져오는 함수
+    public String getDiaryDate(int idx){
+        String date=diaryList.get(idx).getDate().substring(0,10);
+        return date;
+    }
+
 }

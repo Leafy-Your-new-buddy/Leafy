@@ -85,10 +85,16 @@ class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder>
             showWaterDate(holder,date); //물준날 체크
 
             //기록한 날 체크 테스트
-            String testdate = "2021-07-10";
+            String testdate = "2021-08-24";
             if(testdate.equals(date.toString())){
-                holder.calText1.setBackgroundColor(Color.parseColor("#FAECC5"));
-                holder.calText1.setText("기록한 날");
+                if(!holder.calText1.getText().equals(" 물 준 날 ")){
+                    holder.calText1.setBackgroundColor(Color.parseColor("#FAECC5"));
+                    holder.calText1.setText("기록한 날");
+                }
+                else {
+                    holder.calText2.setBackgroundColor(Color.parseColor("#FAECC5"));
+                    holder.calText2.setText("기록한 날");
+                }
 
             }
 
@@ -121,8 +127,16 @@ class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder>
 
                     if(water.equals(date.toString())){
 
+                        if(!holder.calText1.getText().equals("기록한 날")){
                             holder.calText1.setBackgroundColor(Color.parseColor("#D4F4FA"));
                             holder.calText1.setText(" 물 준 날 ");
+                        }
+                        else {
+                            holder.calText2.setBackgroundColor(Color.parseColor("#D4F4FA"));
+                            holder.calText2.setText(" 물 준 날 ");
+                        }
+
+
 
 
                     }

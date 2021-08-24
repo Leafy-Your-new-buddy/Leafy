@@ -186,6 +186,7 @@
                 app:layout_constraintTop_toTopOf="@+id/leafy_condition" />
 
             <ImageButton
+                android:id="@+id/setIcon"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="15dp"
