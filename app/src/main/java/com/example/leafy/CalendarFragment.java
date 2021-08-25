@@ -22,9 +22,14 @@ import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.StorageReference;
 
 import java.time.LocalDate;
 import java.time.YearMonth;
@@ -43,7 +48,9 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
     RecyclerView calendarRecyclerView;
     Context context;
 
-
+    private DatabaseReference mDatabaseRef;  //실시간 데이터베이스
+    private FirebaseUser user;
+    private String uid;
     public CalendarFragment() {
         // Required empty public constructor
 
@@ -66,6 +73,10 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
         monthYearText = view.findViewById(R.id.monthYearTV);
         CalendarUtils.selectedDate = LocalDate.now();
         CalendarUtils.firstLoad=true;
+
+        mDatabaseRef= FirebaseDatabase.getInstance().getReference("appname");
+        user = FirebaseAuth.getInstance().getCurrentUser(); // 로그인한 유저의 정보 가져오기
+        uid = user != null ? user.getUid() : null; // 로그인한 유저의 고유 uid 가져오기
 
         context = container.getContext();
 
@@ -164,9 +175,11 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
             //더블클릭한경우
             if(tempDate!=null){
                 if(tempDate.equals(date)){
-                    Toast.makeText(context,"더블클릭",Toast.LENGTH_SHORT).show();
-                    mOnPopupClick("꺄");
 
+                    if(calendarAdapter.checkRecordDate()){
+                        //Toast.makeText(context,"이미지를 불러오는 중..",Toast.LENGTH_LONG).show();
+                        mOnPopupClick(String.valueOf(date));
+                    }
 
                 }
             }
@@ -174,7 +187,7 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
 
 
 
-            //이걸 쓰면 물준날은 갱신 x 클릭한 날짜 테두리만 갱신할 수 있다. (깜빡임 해결!!)
+            //이걸 쓰면 기록,물준날은 갱신 x 클릭한 날짜 테두리만 갱신할 수 있다. (깜빡임 해결!!)
             calendarAdapter.notifyDataSetChanged();
 
         }
