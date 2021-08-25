@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                mFirebaseAuth.signInWithEmailAndPassword("camera2@gmail.com", "123456").addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                mFirebaseAuth.signInWithEmailAndPassword("test0825_1@gmail.com", "123456").addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull @NotNull Task<AuthResult> task) {
 

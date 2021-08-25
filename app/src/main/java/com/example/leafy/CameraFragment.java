@@ -274,7 +274,7 @@ public class CameraFragment extends Fragment implements View.OnClickListener {
     private TensorOperator getPostprocessNormalizeOp(){
         return new NormalizeOp(PROBABILITY_MEAN, PROBABILITY_STD);
     }
-
+    String result_txt;
     private void showresult(){
 
         try{
@@ -289,7 +289,7 @@ public class CameraFragment extends Fragment implements View.OnClickListener {
 
         for (Map.Entry<String, Float> entry : labeledProbability.entrySet()) {
             if (entry.getValue()==maxValueInMap) {
-                String result_txt = entry.getKey();
+                result_txt = entry.getKey();
                 tv_result.setText(result_txt);
 
                 if(result_txt.equals("\"건강\"")){
@@ -327,6 +327,7 @@ public class CameraFragment extends Fragment implements View.OnClickListener {
         return image;
     }
 
+    int exifDegree;
     // 카메라로 촬영한 사진을 가져와 이미지뷰에 띄워줌
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -342,7 +343,7 @@ public class CameraFragment extends Fragment implements View.OnClickListener {
             }
 
             int exifOrientation;
-            int exifDegree;
+            //int exifDegree;
 
             if (exif != null) {
                 exifOrientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
@@ -432,7 +433,9 @@ public class CameraFragment extends Fragment implements View.OnClickListener {
         //파이어베이스 스토리지에 업로드
         Toast.makeText(context, "기록 중입니다. 잠시만 기다려주세요", Toast.LENGTH_SHORT).show();
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+
+        //여기서..
+        rotate(bitmap, exifDegree).compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] datas = baos.toByteArray();
         mProfileRef = mStorageRef.child("recodeImage").child(uid).child(getTime); //스토리지 저장
         UploadTask uploadTask = mProfileRef.putBytes(datas);
@@ -451,8 +454,20 @@ public class CameraFragment extends Fragment implements View.OnClickListener {
             public void onComplete(@NonNull Task<Uri> task) {
                 if (task.isSuccessful()) {
                     String mDownloadImageUri = String.valueOf(task.getResult());
-
-                    Diary newD=new Diary(getTime,"진단 내용",mDownloadImageUri);
+                    String content;
+                    if(result_txt.equals("\"건강\"")){
+                        content="이날의 다육이는 건강했습니다.";
+                    }
+                    else if(result_txt.equals("\"화상\"")){
+                        content="이날의 다육이는 화상 증상이 있었습니다.";
+                    }
+                    else if(result_txt.equals("\"과습\"")){
+                        content="이날의 다육이는 과습 증상이 있었습니다.";
+                    }
+                    else  {
+                        content="이날의 다육이는 수분부족 증상이 있었습니다.";
+                    }
+                    Diary newD=new Diary(getTime,content,mDownloadImageUri);
                     mDatabaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {

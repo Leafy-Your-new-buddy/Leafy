@@ -29,6 +29,7 @@ class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder>
     private final ArrayList<LocalDate> days;
     private final OnItemListener onItemListener;
 
+    public CalendarViewHolder holder;
 
     @Override
     public long getItemId(int position) {
@@ -56,11 +57,13 @@ class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder>
 
         else // week view
             layoutParams.height = (int) parent.getHeight();
-        CalendarViewHolder holder=new CalendarViewHolder(view, onItemListener, days);
+        holder=new CalendarViewHolder(view, onItemListener, days);
 
 
         return holder;
     }
+
+    boolean recordCheck;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -77,26 +80,17 @@ class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder>
             if(date.equals(CalendarUtils.selectedDate)){
 
                 holder.parentView.setBackgroundResource(R.drawable.edge_cal); //선택 날짜 테두리 둘러지게..
+                if(holder.calText1.getText().equals("기록한 날")||holder.calText2.getText().equals("기록한 날"))
+                    recordCheck=true;
+                else
+                    recordCheck=false;
             }
             else{ //선택날짜 아닌애들은 테두리 지우기
                 holder.parentView.setBackgroundResource(0);
             }
 
-            showWaterDate(holder,date); //물준날 체크
+            showWaterDate(holder,date); //물준날,기록한날 체크
 
-            //기록한 날 체크 테스트
-            String testdate = "2021-08-24";
-            if(testdate.equals(date.toString())){
-                if(!holder.calText1.getText().equals(" 물 준 날 ")){
-                    holder.calText1.setBackgroundColor(Color.parseColor("#FAECC5"));
-                    holder.calText1.setText("기록한 날");
-                }
-                else {
-                    holder.calText2.setBackgroundColor(Color.parseColor("#FAECC5"));
-                    holder.calText2.setText("기록한 날");
-                }
-
-            }
 
 
         }
@@ -135,10 +129,21 @@ class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder>
                             holder.calText2.setBackgroundColor(Color.parseColor("#D4F4FA"));
                             holder.calText2.setText(" 물 준 날 ");
                         }
+                    }
+                }
 
+                for(int i=0;i<value.getDiarySize();i++){
+                    String water=value.getDiaryDate(i);
+                    if(water.equals(date.toString())){
 
-
-
+                        if(!holder.calText1.getText().equals(" 물 준 날 ")){
+                            holder.calText1.setBackgroundColor(Color.parseColor("#FAECC5"));
+                            holder.calText1.setText("기록한 날");
+                        }
+                        else {
+                            holder.calText2.setBackgroundColor(Color.parseColor("#FAECC5"));
+                            holder.calText2.setText("기록한 날");
+                        }
                     }
                 }
             }
@@ -150,6 +155,17 @@ class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder>
 
         /* ----------------------------------------파이어베이스----------------------------------------------*/
     }
+
+    public boolean checkRecordDate(){
+            return this.recordCheck;
+
+    }
+    public CalendarViewHolder getHolder(){
+        return this.holder;
+    }
+
+
+
     @Override
     public int getItemCount()
     {

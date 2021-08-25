@@ -111,5 +111,28 @@ public class UserAccount {
         String date=diaryList.get(idx).getDate().substring(0,10);
         return date;
     }
+    //해당하는 인덱스의 diary를 리턴
+    public Diary getcertainDiary(int index){
+        return diaryList.get(index);
+    }
+
+    //해당하는 날짜에 기록된 애들만 리스트에 넣어서 리턴
+    public List<Diary> getcertainDiaryList(String date){
+        List<Diary> tempdiaryList;
+        tempdiaryList=new ArrayList();
+
+        for(int i=diaryList.size()-1;i>=0;i--){
+            String day=diaryList.get(i).getDate().substring(0,10);
+            if(day.equals(date)){
+                tempdiaryList.add(diaryList.get(i));
+            }
+        }
+
+        return tempdiaryList;
+    }
+
+    //--ToDo--
+    //기록한 날을 주면 그날의 기록 리턴하는 함수
+    //기록한 날을 주면 그날의 기록이 몇개인지 리턴하는 함수
 
 }
