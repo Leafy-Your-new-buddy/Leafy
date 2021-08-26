@@ -14,6 +14,7 @@
         android:scaleType="centerCrop"
         app:layout_editor_absoluteX="0dp"
         app:layout_editor_absoluteY="0dp"></ImageView>
+
     <RelativeLayout
         android:id="@+id/parent_container"
         android:layout_width="match_parent"
@@ -23,196 +24,235 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             >
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/water_Feedback_box"
-                android:layout_width="350dp"
-                android:layout_height="70dp"
-                android:layout_marginTop="20dp"
-                android:layout_centerHorizontal="true"
-                android:background="@drawable/edge2"
-                android:gravity="center"
-                android:textSize="15dp">
+            <TextView
+                android:id="@+id/tv_welcome"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:text="안녕하세요, 00님!\n안녕하세요, 00님!\n안녕하세요, 00님!"
+                android:gravity="center"/>
 
-                <ImageView
-                    android:id="@+id/humid_icon"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/ic_humidity"
-                    android:layout_marginStart="10dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/tvReceiveData_main"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="61"
-                    android:textColor="#4374D9"
-                    android:textSize="25dp"
-                    android:layout_marginStart="10dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/humid_icon"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/water_Feedback"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:text="블루투스 활성화"
-                    android:textSize="15dp"
-                    android:gravity="center"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/tvReceiveData_main"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.5" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_below="@+id/water_Feedback_box"
-                android:layout_marginTop="10dp"
-                android:id="@+id/weather_Feedback_box"
-                android:layout_centerHorizontal="true"
-                android:layout_width="350dp"
-                android:layout_height="70dp"
-                android:background="@drawable/edge2"
-                android:gravity="center"
-                android:textSize="15dp">
-
-                <ImageView
-                    android:id="@+id/weatherIcon"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="10dp"
-                    android:src="@drawable/sunny"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"></ImageView>
-
-                <TextView
-                    android:id="@+id/temperature"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="5dp"
-                    android:gravity="center_horizontal"
-                    android:text="0*C"
-                    android:textColor="#CC3D3D"
-                    android:textSize="25dp"
-                    app:layout_constraintBottom_toTopOf="@+id/weatherCondition"
-                    app:layout_constraintStart_toEndOf="@+id/weatherIcon"
-                    app:layout_constraintTop_toTopOf="parent"></TextView>
-
-                <TextView
-                    android:id="@+id/weatherCondition"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:text="--weather--"
-                    android:textSize="15dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/weatherIcon"></TextView>
-
-                <TextView
-                    android:id="@+id/weather_tip"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="오늘의 날씨 조언"
-                    android:textSize="15dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/temperature"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <ImageView
-                android:layout_below="@+id/weather_Feedback_box"
-                android:layout_centerHorizontal="true"
-                android:id="@+id/imageView"
-                android:layout_width="250dp"
-                android:layout_height="250dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="60dp"
-                android:src="@drawable/healthy"></ImageView>
 
         </RelativeLayout>
+
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/container2"
             android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
-            android:layout_height="120dp">
+            android:background="#99FFFFFF"
+            android:layout_height="500dp">
+
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="15dp"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_setting"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_touch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="대화를 시작하려면 터치!"
+                android:textSize="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="50dp"/>
+
             <TextView
                 android:id="@+id/leafy_condition"
+                android:lineSpacingExtra="5dp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/black"
-                android:backgroundTint="#D1EAB7"
+                android:layout_height="100dp"
                 android:fontFamily="@font/cafe24surroundair"
+                android:layout_marginTop="10dp"
                 android:gravity="center"
-                android:text="오늘은 기분이 좋아요!"
-                android:textSize="18sp"
-                android:layout_marginBottom="0dp"/>
+                android:text="기분이 최고야! :)\n내가 얼마나 성장했는지 기록해 보는 게 어때?"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_touch" />
 
             <Button
                 android:id="@+id/test_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:layout_margin="20dp"
-                android:text="물주기"
-
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-
-            <ImageButton
-                android:id="@+id/btn_chat"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@null"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_chat2"
                 android:layout_margin="10dp"
-                app:layout_constraintStart_toStartOf="@+id/leafy_condition"
-                app:layout_constraintTop_toTopOf="@+id/leafy_condition" />
+                android:text="물주기"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageButton
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="12dp"
-                android:background="@null"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_setting"
-                app:layout_constraintStart_toEndOf="@+id/btn_chat"
-                app:layout_constraintTop_toTopOf="@+id/leafy_condition" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginHorizontal="20dp"
+                android:background="@drawable/edge2"
+                app:cardCornerRadius="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/leafy_condition">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/water_Feedback_box"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginHorizontal="20dp">
+
+                    <ImageView
+                        android:id="@+id/humid_icon"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="10dp"
+                        android:src="@drawable/ic_humidity"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvReceiveData_main"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="61"
+                        android:textColor="#4374D9"
+                        android:textSize="25dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/humid_icon"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/water_Feedback"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center"
+                        android:text="블루투스 활성화"
+                        android:textSize="15dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/tvReceiveData_main"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.5" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView2"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/edge2"
+                app:cardCornerRadius="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/weather_Feedback_box"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/weatherIcon"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/sunny"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"></ImageView>
+
+                    <TextView
+                        android:id="@+id/temperature"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center_horizontal"
+                        android:text="0*C"
+                        android:textColor="#CC3D3D"
+                        android:textSize="25dp"
+                        app:layout_constraintBottom_toTopOf="@+id/weatherCondition"
+                        app:layout_constraintStart_toEndOf="@+id/weatherIcon"
+                        app:layout_constraintTop_toTopOf="parent"></TextView>
+
+                    <TextView
+                        android:id="@+id/weatherCondition"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="Sunny"
+                        android:textSize="15dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/weatherIcon"></TextView>
+
+                    <TextView
+                        android:id="@+id/weather_tip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center"
+                        android:text="오늘의 날씨 조언"
+                        android:textSize="15dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/temperature"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/edge2"
+                app:cardCornerRadius="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView2">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="오늘의 TIP 카드뉴스" />
+            </androidx.cardview.widget.CardView>
+
+
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <ImageView
+            android:id="@+id/btn_chat"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:elevation="10dp"
+            android:src="@drawable/chat_leafy"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="450dp"/>
+
 
     </RelativeLayout>
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

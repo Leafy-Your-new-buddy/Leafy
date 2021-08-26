@@ -10,6 +10,7 @@ import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.media.Image;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -90,7 +91,7 @@ public class MainFragment extends Fragment implements View.OnClickListener{
 
     }
 
-    ImageButton go_chat;
+    ImageView go_chat;
     Button btn_test;
     static TextView text;
  //   static TextView tv;
@@ -116,7 +117,7 @@ public class MainFragment extends Fragment implements View.OnClickListener{
         //위에 만들어진 view객체 안에 있는 TextView를 찾아오기
         text= (TextView)view.findViewById(R.id.tvReceiveData_main);
         water_feedback= (TextView)view.findViewById(R.id.water_Feedback);
-        go_chat= (ImageButton) view.findViewById(R.id.btn_chat);
+        go_chat= (ImageView) view.findViewById(R.id.btn_chat);
         tv_weathertip = (TextView) view.findViewById(R.id.weather_tip);
 
         weatherState = (TextView)view.findViewById(R.id.weatherCondition);
