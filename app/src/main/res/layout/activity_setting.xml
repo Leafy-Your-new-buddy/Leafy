@@ -9,79 +9,134 @@
     <include layout="@layout/subtoolbar" android:id="@+id/subtoolbar">
     </include>
 
-<!--
-    <FrameLayout
+
+    <TextView
+        android:id="@+id/bluetoothT"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="블루투스"
+        android:textSize="17dp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="@+id/subtoolbar"
+        app:layout_constraintStart_toStartOf="@+id/subtoolbar"
+        app:layout_constraintTop_toBottomOf="@+id/settingEmail" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/bluetoothBtns"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
-
-  -->
-
-
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bluetoothT">
     <Button
 
         android:id="@+id/btnBluetoothOn"
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="15dp"
-
+        android:background="@drawable/round_btn"
         android:text="블루투스 ON"
-        app:layout_constraintStart_toStartOf="@+id/subtoolbar"
-        app:layout_constraintTop_toBottomOf="@+id/settingEmail"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bluetoothT"
 
         />
 
     <Button
         android:id="@+id/btnBluetoothOff"
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
+        android:background="@drawable/round_btn"
+        android:textColor="@color/white"
         android:text="블루투스 OFF"
+
+        android:layout_marginLeft="10dp"
         app:layout_constraintStart_toEndOf="@+id/btnBluetoothOn"
-        app:layout_constraintTop_toTopOf="@+id/btnBluetoothOn"
-         />
+        app:layout_constraintTop_toBottomOf="@+id/bluetoothT" />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/senserT"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="수분센서"
+        android:textSize="17dp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="@+id/subtoolbar"
+        app:layout_constraintStart_toStartOf="@+id/subtoolbar"
+        app:layout_constraintTop_toBottomOf="@+id/bluetoothBtns" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/senserBtns"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/senserT">
     <Button
         android:id="@+id/btnConnect"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginLeft="5dp"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:background="@null"
         android:text="연결하기"
-        app:layout_constraintStart_toEndOf="@+id/btnBluetoothOff"
-        app:layout_constraintTop_toTopOf="@+id/btnBluetoothOff" />
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bluetoothT" />
+
+    <Button
+        android:id="@+id/btnConnectEnd"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:textColor="@color/black"
+        android:text="연결끊기"
+        android:layout_marginLeft="10dp"
+
+          />
+    </LinearLayout>
+
+
 
     <TextView
         android:id="@+id/tvBluetoothStatus"
-        android:layout_width="170dp"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:layout_height="20dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:text="status"
-        app:layout_constraintStart_toStartOf="@+id/btnBluetoothOn"
-        app:layout_constraintTop_toBottomOf="@+id/btnBluetoothOn" />
-
-
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/senserBtns" />
     <Button
         android:id="@+id/backToMain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
-        android:gravity="center_horizontal"
+        android:gravity="center"
+        android:background="@drawable/round_btn"
+        android:textColor="@color/white"
 
         android:text="확인"
         app:layout_constraintStart_toStartOf="@+id/tvBluetoothStatus"
         app:layout_constraintTop_toBottomOf="@+id/tvBluetoothStatus"
 
         />
-
     <Button
         android:id="@+id/logOut"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
         android:text="로그아웃"
-        android:textColor="@color/red"
+        android:background="@drawable/round_btn2"
+
+        android:textColor="@color/main_color"
         app:layout_constraintEnd_toEndOf="parent"
 
         app:layout_constraintStart_toStartOf="parent"
@@ -107,6 +162,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/settingName" />
+
+
 
     <!--
         </FrameLayout>
