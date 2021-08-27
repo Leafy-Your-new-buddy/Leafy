@@ -99,7 +99,7 @@ public class CameraFragment extends Fragment implements View.OnClickListener {
     ImageView iv_result;
     TextView tv_result2;
     TextView shortInfo;
-    Button btn_detail;
+    // Button btn_detail;
     Button btn_capture;
     LinearLayout btns;
 
@@ -134,7 +134,7 @@ public class CameraFragment extends Fragment implements View.OnClickListener {
         btn_classify = view.findViewById(R.id.classify);
         tv_result2 = view.findViewById(R.id.tv_result2);
         shortInfo = view.findViewById(R.id.shortInfo);
-        btn_detail = view.findViewById(R.id.btn_detail);
+        // btn_detail = view.findViewById(R.id.btn_detail);
         btn_capture = view.findViewById(R.id.btn_capture);
         record=view.findViewById(R.id.btn_record);
         btn_classify.setVisibility(View.GONE);
@@ -173,9 +173,6 @@ public class CameraFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                btn_capture.setText("재촬영");
-                btn_classify.setVisibility(View.VISIBLE);
-                btns.setVisibility(View.VISIBLE);
 
                 if(intent.resolveActivity(getActivity().getPackageManager())!=null){
                     File photoFile = null;
@@ -192,6 +189,9 @@ public class CameraFragment extends Fragment implements View.OnClickListener {
                         //photoFile
                     }
                 }
+
+                btn_capture.setText("재촬영");
+                btn_classify.setVisibility(View.VISIBLE);
             }
         });
 
@@ -217,9 +217,12 @@ public class CameraFragment extends Fragment implements View.OnClickListener {
 
                 tflite.run(inputImageBuffer.getBuffer(),outputProbabilityBuffer.getBuffer().rewind());
                 showresult();
+
+                btns.setVisibility(View.VISIBLE);
             }
         });
 
+        /*
         btn_detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -227,6 +230,7 @@ public class CameraFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent);
             }
         });
+        */
 
         //기록 버튼 누름
         record.setOnClickListener(new View.OnClickListener() {
@@ -385,9 +389,9 @@ public class CameraFragment extends Fragment implements View.OnClickListener {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == MY_CAMERA_REQUEST_CODE) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(context, "camera permission granted", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "카메라 권한이 허용되었습니다.", Toast.LENGTH_LONG).show();
             } else {
-                Toast.makeText(context, "camera permission denied", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "카메라 권한을 거부하셨습니다.", Toast.LENGTH_LONG).show();
             }
         }
     }
