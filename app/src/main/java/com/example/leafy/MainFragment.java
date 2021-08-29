@@ -13,6 +13,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
@@ -91,7 +92,7 @@ public class MainFragment extends Fragment implements View.OnClickListener{
     }
 
     ImageView go_chat;
-    ImageView cardNews;
+    TextView cardNews;
     ImageButton go_set;
     Button btn_test;
     static TextView text;
@@ -126,7 +127,7 @@ public class MainFragment extends Fragment implements View.OnClickListener{
         mweatherIcon = (ImageView) view.findViewById(R.id.weatherIcon);
 
         //카드뉴스
-        cardNews = (ImageView)view.findViewById(R.id.cardNews_thumb);
+        cardNews = (TextView)view.findViewById(R.id.btn_cardnews);
         cardNews.setOnClickListener(this);
 
 
@@ -238,7 +239,7 @@ public class MainFragment extends Fragment implements View.OnClickListener{
                 Intent intent2 = new Intent(getActivity(),settingActivity.class);
                 startActivity(intent2);
                 break;
-            case R.id.cardNews:
+            case R.id.btn_cardnews:
                 Intent intent3 = new Intent(getActivity(),CardNewsActivity.class);
                 startActivity(intent3);
                 break;
