@@ -256,6 +256,7 @@
                 app:layout_constraintStart_toStartOf="parent">
 
                 <TextView
+                    android:id="@+id/btn_cardnews"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
