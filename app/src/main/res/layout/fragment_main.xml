@@ -40,7 +40,7 @@
             android:id="@+id/container2"
             android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
-            android:background="#99FFFFFF"
+            android:background="@drawable/main_box_bg"
             android:layout_height="wrap_content">
 
 
@@ -61,7 +61,8 @@
                 android:id="@+id/setIcon"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_margin="15dp"
+                android:layout_marginTop="65dp"
+                android:layout_marginRight="15dp"
                 android:background="@null"
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_setting"
@@ -96,7 +97,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:layout_margin="10dp"
+                android:layout_marginTop="60dp"
                 android:text="물주기"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

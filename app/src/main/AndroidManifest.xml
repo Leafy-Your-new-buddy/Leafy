@@ -19,6 +19,9 @@
         android:theme="@style/Theme.Leafy">
         <activity android:name=".PopupActivity" android:theme="@android:style/Theme.Dialog"></activity>
         <activity android:name=".DiagnoseActivity" />
+        <activity android:name=".CardNewsActivity" />
+        <activity android:name=".CardNews1" />
+        <activity android:name=".CardNews2" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,6 +36,7 @@
             android:name=".settingActivity"
             android:configChanges="orientation|screenSize" />
         <activity android:name=".MainActivity" />
+
 
         <provider
             android:name="androidx.core.content.FileProvider"
