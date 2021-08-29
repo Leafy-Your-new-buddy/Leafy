@@ -91,6 +91,7 @@ public class MainFragment extends Fragment implements View.OnClickListener{
     }
 
     ImageView go_chat;
+    ImageView cardNews;
     ImageButton go_set;
     Button btn_test;
     static TextView text;
@@ -123,6 +124,12 @@ public class MainFragment extends Fragment implements View.OnClickListener{
         weatherState = (TextView)view.findViewById(R.id.weatherCondition);
         Temperature = (TextView)view.findViewById(R.id.temperature);
         mweatherIcon = (ImageView) view.findViewById(R.id.weatherIcon);
+
+        //카드뉴스
+        cardNews = (ImageView)view.findViewById(R.id.cardNews_thumb);
+        cardNews.setOnClickListener(this);
+
+
         //NameofCity = (TextView)view.findViewById(R.id.cityName);
 
         go_set=(ImageButton) view.findViewById(R.id.setIcon);
@@ -231,7 +238,10 @@ public class MainFragment extends Fragment implements View.OnClickListener{
                 Intent intent2 = new Intent(getActivity(),settingActivity.class);
                 startActivity(intent2);
                 break;
-
+            case R.id.cardNews:
+                Intent intent3 = new Intent(getActivity(),CardNewsActivity.class);
+                startActivity(intent3);
+                break;
 
         }
 
