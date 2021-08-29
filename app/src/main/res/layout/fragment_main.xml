@@ -231,6 +231,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cardNews"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_marginHorizontal="20dp"
@@ -241,11 +242,19 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cardView2">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="오늘의 TIP 카드뉴스" />
+                <ImageView
+                    android:id="@+id/cardNews_thumb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="200dp"
+                    android:background="#FFF1ED"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/thumbnail"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.533"></ImageView>
             </androidx.cardview.widget.CardView>
 
 

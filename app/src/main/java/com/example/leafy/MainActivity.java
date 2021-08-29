@@ -51,6 +51,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private BottomNavigationView navigationView;
+    ImageView cardNews;  //카드뉴스
 
 
 
@@ -74,6 +75,16 @@ public class MainActivity extends AppCompatActivity {
                 //wow
             }
         });
+//        //카드뉴스로 이동
+//        cardNews = (ImageView) findViewById(R.id.cardNews);
+//        cardNews.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getApplicationContext(), CardNewsActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+
 
 /*
         btn_camera = (Button)findViewById(R.id.btn_camera);
