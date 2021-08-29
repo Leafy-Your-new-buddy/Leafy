@@ -39,7 +39,7 @@ public class CardNewsActivity extends AppCompatActivity {
         });
 
         //뒤로가기
-        back_btn  = (ImageView) findViewById(R.id.imageView2);
+        /*back_btn  = (ImageView) findViewById(R.id.imageView2);
         back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,6 +50,6 @@ public class CardNewsActivity extends AppCompatActivity {
                     Log.v("testerr",e.getMessage());
                 }
             }
-        });
+        });*/
     }
 }

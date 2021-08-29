@@ -130,9 +130,6 @@ public class MainFragment extends Fragment implements View.OnClickListener{
         cardNews = (TextView)view.findViewById(R.id.btn_cardnews);
         cardNews.setOnClickListener(this);
 
-
-        //NameofCity = (TextView)view.findViewById(R.id.cityName);
-
         go_set=(ImageButton) view.findViewById(R.id.setIcon);
 
         context = container.getContext();   // toast 사용에 필요
