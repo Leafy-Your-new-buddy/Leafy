@@ -55,6 +55,9 @@ public class RegisterActivity extends AppCompatActivity {
                 } else if (strPwd.equals(null) || strPwd.equals("")) {
                     Toast.makeText(RegisterActivity.this, "비번을 입력하세요.", Toast.LENGTH_SHORT).show();
                 }
+                else if(strPwd.length()<6){
+                    Toast.makeText(RegisterActivity.this, "비밀번호는 6자 이상으로 해주세요.", Toast.LENGTH_SHORT).show();
+                }
 
                 else {
 
