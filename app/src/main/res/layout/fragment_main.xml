@@ -262,6 +262,13 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="오늘의 TIP 카드뉴스" />
+                <ImageView
+                    android:id="@+id/cardNewsThumb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="200dp"
+                    android:scaleType="centerCrop"
+                    android:paddingBottom="30dp"
+                    android:src="@drawable/thumbnail"></ImageView>
             </androidx.cardview.widget.CardView>
 
 
