@@ -40,12 +40,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginTop="10dp"
             android:gravity="center_horizontal">
             <Button
                 android:id="@+id/btn_capture"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cafe24surroundair"
+                android:background="@drawable/round_btn"
+                android:textColor="@color/white"
                 android:text="촬영"></Button>
             <Button
                 android:id="@+id/classify"
@@ -53,6 +56,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:fontFamily="@font/cafe24surroundair"
+                android:background="@drawable/round_btn"
+                android:textColor="@color/white"
                 android:text="진단"></Button>
         </LinearLayout>
         <LinearLayout
@@ -97,9 +102,12 @@
 
             <Button
                 android:id="@+id/btn_record"
+                android:layout_marginBottom="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="기록하기"
+                android:background="@drawable/round_btn2"
+                android:textColor="@color/main_color"
                 android:fontFamily="@font/cafe24surroundair"></Button>
         </LinearLayout>
 
