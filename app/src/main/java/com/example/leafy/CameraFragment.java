@@ -70,6 +70,7 @@ import java.util.List;
 import java.util.Map;
 
 import static androidx.core.content.ContextCompat.checkSelfPermission;
+import static com.example.leafy.R.color.white;
 
 
 public class CameraFragment extends Fragment implements View.OnClickListener {
