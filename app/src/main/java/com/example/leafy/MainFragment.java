@@ -161,6 +161,8 @@ public class MainFragment extends Fragment implements View.OnClickListener{
         //일단 이 버튼을 누르면 물줬다고 인식
         btn_test=view.findViewById(R.id.test_button);
         btn_test.setOnClickListener(this);
+
+        btn_test.setVisibility(View.GONE); //임시 물주기 버튼 안보이게..
         //채팅 버튼 누르면 채팅 액티비티로 이동
         go_chat.setOnClickListener(this);
         go_set.setOnClickListener(this);
