@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "198829120874",
+    "project_id": "leafy-my-new-buddy",
+    "storage_bucket": "leafy-my-new-buddy.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:198829120874:android:a0603fab19ae305c2d1913",
+        "android_client_info": {
+          "package_name": "com.example.leafy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "198829120874-egur3ajte31gkenk357he70ea9rgmoj6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1MAWMWl9d2P3FtDPRChHWjM-DdOl1ftE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "198829120874-egur3ajte31gkenk357he70ea9rgmoj6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

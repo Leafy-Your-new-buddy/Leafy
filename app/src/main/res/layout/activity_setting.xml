@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".settingActivity">
+    <include layout="@layout/subtoolbar" android:id="@+id/subtoolbar">
+    </include>
+
+
+    <TextView
+        android:id="@+id/bluetoothT"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="블루투스"
+        android:textSize="17dp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="@+id/subtoolbar"
+        app:layout_constraintStart_toStartOf="@+id/subtoolbar"
+        app:layout_constraintTop_toBottomOf="@+id/settingEmail" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/bluetoothBtns"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bluetoothT">
+    <Button
+
+        android:id="@+id/btnBluetoothOn"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_btn"
+        android:text="블루투스 ON"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bluetoothT"
+
+        />
+
+    <Button
+        android:id="@+id/btnBluetoothOff"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_btn"
+        android:textColor="@color/white"
+        android:text="블루투스 OFF"
+
+        android:layout_marginLeft="10dp"
+        app:layout_constraintStart_toEndOf="@+id/btnBluetoothOn"
+        app:layout_constraintTop_toBottomOf="@+id/bluetoothT" />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/senserT"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="수분센서"
+        android:textSize="17dp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="@+id/subtoolbar"
+        app:layout_constraintStart_toStartOf="@+id/subtoolbar"
+        app:layout_constraintTop_toBottomOf="@+id/bluetoothBtns" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/senserBtns"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/senserT">
+    <Button
+        android:id="@+id/btnConnect"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:text="연결하기"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bluetoothT" />
+
+    <Button
+        android:id="@+id/btnConnectEnd"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:textColor="@color/black"
+        android:text="연결끊기"
+        android:layout_marginLeft="10dp"
+
+          />
+    </LinearLayout>
+
+
+
+    <TextView
+        android:id="@+id/tvBluetoothStatus"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="5dp"
+        android:text="status"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/senserBtns" />
+    <Button
+        android:id="@+id/backToMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:gravity="center"
+        android:background="@drawable/round_btn"
+        android:textColor="@color/white"
+
+        android:text="확인"
+        app:layout_constraintStart_toStartOf="@+id/tvBluetoothStatus"
+        app:layout_constraintTop_toBottomOf="@+id/tvBluetoothStatus"
+
+        />
+    <Button
+        android:id="@+id/logOut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="로그아웃"
+        android:background="@drawable/round_btn2"
+
+        android:textColor="@color/main_color"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/backToMain" />
+
+    <TextView
+        android:id="@+id/settingName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="30dp"
+        android:text="이름"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/subtoolbar" />
+
+    <TextView
+        android:id="@+id/settingEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="email@gmail.com"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/settingName" />
+
+
+
+    <!--
+        </FrameLayout>
+        -->
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

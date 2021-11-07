@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".CameraActivity">
+    <include layout="@layout/subtoolbar" android:id="@+id/subtoolbar"></include>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/tv_result"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="50dp"
+            android:textSize="20dp"
+            android:text="Take photo to get the result"
+            android:textAlignment="center"
+            />
+
+        <ImageView
+            android:id="@+id/iv_result"
+
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:background="@drawable/ic_launcher_background" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/btn_capture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="Take Photo"></Button>
+        <Button
+            android:id="@+id/classify"
+            android:layout_marginLeft="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="Classify"></Button>
+
+    </LinearLayout>
+<!--    <com.google.android.material.bottomnavigation.BottomNavigationView-->
+<!--        android:id="@+id/bottom_nav"-->
+<!--        android:background="@color/menu_bar"-->
+
+<!--        app:menu="@menu/bottom_nav_menu"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:itemIconTint="@drawable/menu_selector_color"-->
+<!--        app:itemTextColor="@drawable/menu_selector_color"/>-->
+
+</LinearLayout>

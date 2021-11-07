@@ -6,10 +6,112 @@
     tools:context=".CameraFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:gravity="center"
+<!--    <TextView-->
+<!--        android:gravity="center"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:text="camera_fragment" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/btn_camera"-->
+<!--        android:layout_width="152dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginLeft="100dp"-->
+
+<!--        android:layout_marginTop="100dp"-->
+
+<!--        android:text="카메라임시버튼" />-->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="camera_fragment" />
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_weight="1">
+
+
+        <ImageView
+            android:id="@+id/iv_result"
+            android:layout_marginTop="100dp"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:background="@drawable/takephoto" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:gravity="center_horizontal">
+            <Button
+                android:id="@+id/btn_capture"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/cafe24surroundair"
+                android:background="@drawable/round_btn"
+                android:textColor="@color/white"
+                android:text="촬영"></Button>
+            <Button
+                android:id="@+id/classify"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:fontFamily="@font/cafe24surroundair"
+                android:background="@drawable/round_btn"
+                android:textColor="@color/white"
+                android:text="진단"></Button>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+            <TextView
+                android:id="@+id/tv_result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:text=""
+                android:textAlignment="center"
+                android:fontFamily="@font/cafe24surroundair"
+                ></TextView>
+            <TextView
+                android:id="@+id/tv_result2"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:textSize="15sp"
+                android:fontFamily="@font/cafe24surroundair"></TextView>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/shortInfo"
+            android:layout_marginTop="20dp"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textAlignment="center"
+            android:fontFamily="@font/cafe24surroundair">
+        </TextView>
+        <LinearLayout
+            android:id="@+id/detailrecordbtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            >
+
+            <Button
+                android:id="@+id/btn_record"
+                android:layout_marginBottom="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="기록하기"
+                android:background="@drawable/round_btn2"
+                android:textColor="@color/main_color"
+                android:fontFamily="@font/cafe24surroundair"></Button>
+        </LinearLayout>
+
+    </LinearLayout>
+
 
 </FrameLayout>
