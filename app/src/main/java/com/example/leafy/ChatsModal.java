@@ -1,5 +1,7 @@
 package com.example.leafy;
 
+import android.widget.Button;
+
 public class ChatsModal {
     private String message;
     private String sender; //user인지 chatbot인지 구분
@@ -24,4 +26,6 @@ public class ChatsModal {
         this.message = message;
         this.sender = sender;
     }
+
+
 }

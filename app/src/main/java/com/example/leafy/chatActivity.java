@@ -23,7 +23,9 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class chatActivity extends AppCompatActivity {
+public class chatActivity extends AppCompatActivity implements ChatRVAdapter.OnListItemSelectedInterface
+
+{
 
     Button go_Main_btn;
     private RecyclerView chatsRV;
@@ -56,10 +58,12 @@ public class chatActivity extends AppCompatActivity {
         userMsgET = findViewById(R.id.idETMessage);
         sendMsgFAB = findViewById(R.id.idFABSend);
         chatsModalArrayList = new ArrayList<>();
-        chatRVAdapter = new ChatRVAdapter(chatsModalArrayList,this);
+        chatRVAdapter = new ChatRVAdapter(chatsModalArrayList,this,this);
         LinearLayoutManager manager = new LinearLayoutManager(this);
         chatsRV.setLayoutManager(manager);
         chatsRV.setAdapter(chatRVAdapter);
+
+
 
         sendMsgFAB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,12 +76,38 @@ public class chatActivity extends AppCompatActivity {
                 userMsgET.setText("");
             }
         });
+
+
+
+
     }
 
-    private void getResponse(String msg){
+    @Override
+    public void onItemSelected(View v, int position) {
+
+        // ChatRVAdapter.BotViewHolder viewHolder = (ChatRVAdapter.BotViewHolder)chatsRV.findViewHolderForAdapterPosition(position);
+        if(position==0){
+            try{
+                getResponse("예");
+
+            }catch(Exception e){
+                Log.v("logTest",e.toString());
+            }
+
+        }
+        else{
+            getResponse("아니오");
+
+        }
+
+
+    }
+
+
+    public void getResponse(String msg){
         chatsModalArrayList.add(new ChatsModal(msg, USER_KEY));
-        String url="http://~~~~~/?msg="+msg;
-        String BASE_URL="http://~~~~~/";
+        String url="https://d465-34-72-229-116.ngrok.io/?msg="+msg;
+        String BASE_URL="https://d465-34-72-229-116.ngrok.io/";
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
