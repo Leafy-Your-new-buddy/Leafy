@@ -54,6 +54,8 @@ public class chatActivity extends AppCompatActivity implements ChatRVAdapter.OnL
             }
         });
 
+        go_Main_btn.setVisibility(View.GONE); //임시 물주기 버튼 안보이게..
+
         chatsRV = findViewById(R.id.idRVChats);
         userMsgET = findViewById(R.id.idETMessage);
         sendMsgFAB = findViewById(R.id.idFABSend);
@@ -106,8 +108,8 @@ public class chatActivity extends AppCompatActivity implements ChatRVAdapter.OnL
 
     public void getResponse(String msg){
         chatsModalArrayList.add(new ChatsModal(msg, USER_KEY));
-        String url="https://d465-34-72-229-116.ngrok.io/?msg="+msg;
-        String BASE_URL="https://d465-34-72-229-116.ngrok.io/";
+        String url=" "+msg;
+        String BASE_URL=" ";
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
