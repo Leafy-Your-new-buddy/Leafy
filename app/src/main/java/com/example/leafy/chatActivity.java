@@ -111,8 +111,8 @@ public class chatActivity extends AppCompatActivity implements ChatRVAdapter.OnL
     public void getResponse(String msg){
         chatsModalArrayList.add(new ChatsModal(msg, USER_KEY));
 
-        String url="http://ec2-15-164-215-150.ap-northeast-2.compute.amazonaws.com:8080/?msg="+msg;
-        String BASE_URL="http://ec2-15-164-215-150.ap-northeast-2.compute.amazonaws.com:8080";
+        String url=" /?msg="+msg;
+        String BASE_URL=" ";
 
 
         Retrofit retrofit = new Retrofit.Builder()
