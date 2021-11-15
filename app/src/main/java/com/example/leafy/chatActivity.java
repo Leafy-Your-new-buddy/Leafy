@@ -108,6 +108,7 @@ public class chatActivity extends AppCompatActivity implements ChatRVAdapter.OnL
         chatsModalArrayList.add(new ChatsModal(msg, USER_KEY));
         String url="https://d465-34-72-229-116.ngrok.io/?msg="+msg;
         String BASE_URL="https://d465-34-72-229-116.ngrok.io/";
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
