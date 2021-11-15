@@ -93,6 +93,7 @@ public class MainFragment extends Fragment implements View.OnClickListener{
 
     ImageView go_chat;
     TextView cardNews;
+    public static TextView welcome;
     ImageButton go_set;
     Button btn_test;
     static TextView text;
@@ -126,6 +127,8 @@ public class MainFragment extends Fragment implements View.OnClickListener{
         Temperature = (TextView)view.findViewById(R.id.temperature);
         mweatherIcon = (ImageView) view.findViewById(R.id.weatherIcon);
 
+        welcome=(TextView)view.findViewById(R.id.tv_welcome);
+
         //카드뉴스
         cardNews = (TextView)view.findViewById(R.id.btn_cardnews);
         cardNews.setOnClickListener(this);
@@ -133,6 +136,27 @@ public class MainFragment extends Fragment implements View.OnClickListener{
         go_set=(ImageButton) view.findViewById(R.id.setIcon);
 
         context = container.getContext();   // toast 사용에 필요
+
+
+        uid = user != null ? user.getUid() : null; // 로그인한 유저의 고유 uid 가져오기
+        mDatabaseRef= FirebaseDatabase.getInstance().getReference("appname");
+
+        //상단에 로그인한 유저의 닉네임, 이메일 표시
+        mDatabaseRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                UserAccount value =  snapshot.child("UserAccount").child(uid).getValue(UserAccount.class);
+                welcome.setText(value.getName() +"님 안녕하세요!");
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         if(!BluetoothAdapter.getDefaultAdapter().isEnabled()){
          //   setTextViewValue("블루투스를 활성화해 주세요.");

@@ -54,6 +54,8 @@ public class chatActivity extends AppCompatActivity implements ChatRVAdapter.OnL
             }
         });
 
+        go_Main_btn.setVisibility(View.GONE); //임시 물주기 버튼 안보이게..
+
         chatsRV = findViewById(R.id.idRVChats);
         userMsgET = findViewById(R.id.idETMessage);
         sendMsgFAB = findViewById(R.id.idFABSend);
@@ -62,6 +64,7 @@ public class chatActivity extends AppCompatActivity implements ChatRVAdapter.OnL
         LinearLayoutManager manager = new LinearLayoutManager(this);
         chatsRV.setLayoutManager(manager);
         chatsRV.setAdapter(chatRVAdapter);
+
 
 
 
@@ -88,7 +91,8 @@ public class chatActivity extends AppCompatActivity implements ChatRVAdapter.OnL
         // ChatRVAdapter.BotViewHolder viewHolder = (ChatRVAdapter.BotViewHolder)chatsRV.findViewHolderForAdapterPosition(position);
         if(position==0){
             try{
-                getResponse("예");
+                getResponse("응");
+
 
             }catch(Exception e){
                 Log.v("logTest",e.toString());
@@ -96,7 +100,7 @@ public class chatActivity extends AppCompatActivity implements ChatRVAdapter.OnL
 
         }
         else{
-            getResponse("아니오");
+            getResponse("아니");
 
         }
 
@@ -106,8 +110,10 @@ public class chatActivity extends AppCompatActivity implements ChatRVAdapter.OnL
 
     public void getResponse(String msg){
         chatsModalArrayList.add(new ChatsModal(msg, USER_KEY));
-        String url="https://d465-34-72-229-116.ngrok.io/?msg="+msg;
-        String BASE_URL="https://d465-34-72-229-116.ngrok.io/";
+
+        String url="http://ec2-15-164-215-150.ap-northeast-2.compute.amazonaws.com:8080/?msg="+msg;
+        String BASE_URL="http://ec2-15-164-215-150.ap-northeast-2.compute.amazonaws.com:8080";
+
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -144,7 +150,7 @@ public class chatActivity extends AppCompatActivity implements ChatRVAdapter.OnL
 
             @Override
             public void onFailure(Call<MsgModal> call, Throwable t) {
-                chatsModalArrayList.add(new ChatsModal("failure",BOT_KEY));
+                chatsModalArrayList.add(new ChatsModal("failure.",BOT_KEY));
                 chatRVAdapter.notifyDataSetChanged();
                 Log.v("logTest",t.getMessage());
 

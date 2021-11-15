@@ -210,6 +210,8 @@ public class settingActivity extends AppCompatActivity {
 
                 UserAccount value =  snapshot.child("UserAccount").child(uid).getValue(UserAccount.class);
                 name.setText(value.getName());
+
+
                 email.setText(value.getEmailId());
 
 
