@@ -47,6 +47,7 @@ public class ChatRVAdapter extends RecyclerView.Adapter {
                 return new UserViewHolder(view);
 
             case 1:
+
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.bot_msg_rv_item,parent,false);
                 return new BotViewHolder(view);
 
@@ -70,6 +71,7 @@ public class ChatRVAdapter extends RecyclerView.Adapter {
                 if(endChar.equals("?")){
                     ((BotViewHolder)holder).yesBtn.setEnabled(true);
                     ((BotViewHolder)holder).noBtn.setEnabled(true);
+
                     ((BotViewHolder)holder).yesBtn.setVisibility(View.VISIBLE);
                     ((BotViewHolder)holder).noBtn.setVisibility(View.VISIBLE);
 
@@ -118,6 +120,7 @@ public class ChatRVAdapter extends RecyclerView.Adapter {
     public class BotViewHolder extends RecyclerView.ViewHolder{
         TextView botTV;
         TextView bot_time;
+
         Button yesBtn=itemView.findViewById(R.id.yesButton);
         Button noBtn=itemView.findViewById(R.id.noButton);
 
@@ -132,6 +135,8 @@ public class ChatRVAdapter extends RecyclerView.Adapter {
                     int position = 0; //예를 클릭
                     mListener.onItemSelected(v, position);
 
+                    //yesBtn.setClickable(false);
+                    //noBtn.setClickable(false);
                 }
             });
             noBtn.setOnClickListener(new View.OnClickListener() {
@@ -139,6 +144,9 @@ public class ChatRVAdapter extends RecyclerView.Adapter {
                 public void onClick(View v) {
                     int position = 1; //아니오를 클릭
                     mListener.onItemSelected(v, position);
+
+                    //yesBtn.setClickable(false);
+                    //noBtn.setClickable(false);
 
                 }
             });
