@@ -23,9 +23,9 @@ public class CardNews3 extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cardnews_01); //
+        setContentView(R.layout.activity_cardnews_03); //
 
-        sliderView = findViewById(R.id.slider2); //
+        sliderView = findViewById(R.id.slider3); //
 
         SliderAdapter sliderAdapter = new SliderAdapter(images, 3);
         sliderView.setSliderAdapter(sliderAdapter);

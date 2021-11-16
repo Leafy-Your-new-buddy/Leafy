@@ -32,7 +32,7 @@ public class CardNews2 extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cardnews_01);
+        setContentView(R.layout.activity_cardnews_02);
 
         sliderView = findViewById(R.id.slider2);
 

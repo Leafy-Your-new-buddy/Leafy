@@ -23,6 +23,7 @@
         <activity android:name=".CardNewsActivity" />
         <activity android:name=".CardNews1" />
         <activity android:name=".CardNews2" />
+        <activity android:name=".CardNews3" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
