@@ -29,6 +29,10 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.Holder> {
             view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.slider2_item,parent,false);
         }
+        else if(flag ==3){
+            view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.slider3_item,parent,false);
+        }
 
         return new Holder(view);
 
@@ -51,9 +55,11 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.Holder> {
             super(itemView);
             if(flag==1)
                 imageView = itemView.findViewById(R.id.slider1_iv);
+
             else if(flag==2)
                 imageView = itemView.findViewById(R.id.slider2_iv);
-
+            else if(flag==3)
+                imageView = itemView.findViewById(R.id.slider3_iv);
         }
     }
 }

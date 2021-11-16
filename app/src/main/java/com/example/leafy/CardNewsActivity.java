@@ -13,6 +13,7 @@ public class CardNewsActivity extends AppCompatActivity {
 
     ImageView cardnews1;
     ImageView cardnews2;
+    ImageView cardnews3;
     ImageView back_btn;
 
     @Override
@@ -34,6 +35,15 @@ public class CardNewsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), CardNews2.class);
+                startActivity(intent);
+            }
+        });
+
+        cardnews3 = (ImageView) findViewById(R.id.news3);
+        cardnews3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), CardNews3.class);
                 startActivity(intent);
             }
         });
