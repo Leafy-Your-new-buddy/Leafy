@@ -59,7 +59,9 @@
 
 
 
-## [![시연 영상]()](https://www.youtube.com/watch?v=oMULcoAG1z8&t=240&ab_channel=%EC%9D%B4%ED%99%94%EC%97%AC%EC%9E%90%EB%8C%80%ED%95%99%EA%B5%90%EC%BB%B4%ED%93%A8%ED%84%B0%EA%B3%B5%ED%95%99%EA%B3%BC%EC%9E%91%ED%92%88%EC%A0%84)
+## 시연 영상
+
+[![시연 영상](./images/video.jpg)](https://www.youtube.com/watch?v=oMULcoAG1z8&t=240&ab_channel=%EC%9D%B4%ED%99%94%EC%97%AC%EC%9E%90%EB%8C%80%ED%95%99%EA%B5%90%EC%BB%B4%ED%93%A8%ED%84%B0%EA%B3%B5%ED%95%99%EA%B3%BC%EC%9E%91%ED%92%88%EC%A0%84)
 
 
 
