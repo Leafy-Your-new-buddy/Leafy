@@ -2,7 +2,7 @@
 
 <p align="center">[2021 캡스톤 디자인 프로젝트] 딥러닝 기반 다육식물 홈 가드닝 가이드 앱: Leafy</p>
 
-- [Service](#service)
+- [서비스](#-cnn을-이용한-다육식물-상태진단)
   - [CNN을 이용한 다육식물 상태진단](#-cnn을-이용한-다육식물-상태진단)
   - [KoBERT 챗봇](#-kobert-챗봇)
   - [물 주기 도움](#-물-주기-도움)
@@ -14,9 +14,8 @@
 
 
 
-## Service
 
-### 📷 CNN을 이용한 다육식물 상태진단
+## 📷 CNN을 이용한 다육식물 상태진단
 
 <img src="./images/cnn.png" width="700"/>
 
@@ -28,9 +27,9 @@
 
 - [ 건강 / 과습 / 수분부족 / 화상 ] 4가지 상태를 진단
 
-  
+<br>  
 
-### 💬 KoBERT 챗봇
+## 💬 KoBERT 챗봇
 
 <img src="./images/chat.png" width="500"/>
 
@@ -38,9 +37,9 @@
 - 사용자의 질문에 대해 즉각적인 답변 제공
 - 꼬리 질문을 통해 더 정확한 솔루션 제공
 
+<br>
 
-
-### 💧 물 주기 도움 
+## 💧 물 주기 도움 
 
 <img src="./images/water.png" width="500"/>
 
@@ -48,22 +47,23 @@
 - 메인 화면에서 실시간 토양 수분량 확인
 - 수분량이 급격히 증가하는 순간을 인식해 물 준 날 자동 기록
 
+<br>
 
-
-### ✨부가 기능
+## ✨부가 기능
 
 <img src="./images/other.png" width="700"/>
 
 - 메인 화면에 현재 날씨에 따른 조언 제공
 - 정보성 카드 뉴스
 
-
+<br>
 
 ## 시연 영상
 
 [![시연 영상](./images/video.jpg)](https://www.youtube.com/watch?v=oMULcoAG1z8&t=240&ab_channel=%EC%9D%B4%ED%99%94%EC%97%AC%EC%9E%90%EB%8C%80%ED%95%99%EA%B5%90%EC%BB%B4%ED%93%A8%ED%84%B0%EA%B3%B5%ED%95%99%EA%B3%BC%EC%9E%91%ED%92%88%EC%A0%84)
 
 
+<br>
 
 ## 포스터
 
@@ -73,7 +73,7 @@
 
 
 
-### 
+
 
 
 
